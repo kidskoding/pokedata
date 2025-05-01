@@ -1,0 +1,4 @@
+pokebase
+ipykernel
+matplotlib
+numpy
