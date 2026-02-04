@@ -1,3 +1,3 @@
 # pokedata
 
-data science and analysis with pokemon in python!
+data science and analytics with pokemon in python!
