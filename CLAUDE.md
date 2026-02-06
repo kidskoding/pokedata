@@ -2,7 +2,7 @@
 
 ## What this project is
 
-Practicing data science, engineering, and analytics skills with Pokemon, one of the most beloved gaming franchises of all time! All analysis lives in Jupyter notebooks — no separate Python packages.
+ Data science, engineering, and analytics skills with Pokemon, one of the most beloved gaming franchises of all time! All analysis lives in Jupyter notebooks — no separate Python packages.
 
 ## Tech stack
 
