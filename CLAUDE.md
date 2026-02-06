@@ -2,15 +2,14 @@
 
 ## What this project is
 
-Pokemon data science project focused on practicing UIUC Datathon competition
-skills. All analysis lives in Jupyter notebooks — no separate Python packages.
+Practicing data science, engineering, and analytics skills with Pokemon, one of the most beloved gaming franchises of all time! All analysis lives in Jupyter notebooks — no separate Python packages.
 
 ## Tech stack
 
 - **Python 3.13** managed by pyenv
 - **uv** for dependency management (not pip)
 - **Jupyter notebooks** for all work
-- **pokebase** for PokéAPI data fetching
+- **pokebase** for PokéAPI data fetching (PokeAPI wrapper)
 - Key libraries: pandas, numpy, matplotlib, seaborn, plotly, scikit-learn,
   xgboost, statsmodels, nltk, scipy, tqdm
 
