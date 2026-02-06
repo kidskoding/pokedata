@@ -1,7 +1,0 @@
-pokebase
-ipykernel
-matplotlib
-numpy
-pandas
-seaborn
-plotly
