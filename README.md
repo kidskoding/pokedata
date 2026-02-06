@@ -2,24 +2,26 @@
 
 data science, engineering, and analytics with pokemon in Python!
 
-Using Pokemon data as a training ground to practice the full spectrum of data
-science skills needed for UIUC Datathon competitions — from data cleaning and
-EDA through classification, regression, clustering, NLP, time series, and
-presentation storytelling.
+Practice the full spectrum of data science, engineering, and analytics skills
+using Pokemon data — from ETL and SQL through predictive modeling, NLP, time
+series, hypothesis testing, and presentation storytelling. These skills carry
+directly to datathon competitions and real-world data work.
 
 ## Notebooks
 
-| # | Notebook | Datathon Skill | Real-World Analog |
-| --- | --- | --- | --- |
-| 00 | Data Pipeline | Acquisition & feature engineering | First hour of any datathon |
-| 01 | EDA & Profiling | Exploratory analysis | Understanding the dataset |
-| 02 | Classification | Binary + multiclass | Credit risk (2025), churn |
-| 03 | Regression | Predictive modeling | Spending forecast (2025) |
-| 04 | Clustering | Unsupervised segmentation | Customer segments, risk tiers |
-| 05 | Time Series | Trend analysis | Stock prediction (2019) |
-| 06 | NLP | Text analytics | Chatbot satisfaction (2023) |
-| 07 | Model Comparison | Evaluation & selection | Justifying choices to judges |
-| 08 | Storytelling | Presentation & recs | Winning the competition |
+| # | Notebook | Skill Area |
+| --- | --- | --- |
+| 00 | Data Pipeline & Engineering | API fetching, ETL, SQLite, feature engineering |
+| 01 | EDA & Data Profiling | Pandas, SQL queries, distributions, correlations |
+| 02 | Classification | Binary + multiclass, sklearn, XGBoost |
+| 03 | Regression & Forecasting | Linear/Ridge/Lasso, residual diagnostics |
+| 04 | Clustering & Segmentation | K-Means, PCA, t-SNE, segment profiling |
+| 05 | Time Series & Trends | Decomposition, ARIMA, statsmodels |
+| 06 | NLP & Text Analysis | Sentiment, TF-IDF, text classification |
+| 07 | Hypothesis Testing | t-tests, ANOVA, chi-squared, effect sizes |
+| 08 | Model Comparison | Cross-validation, comparison tables, tuning |
+| 09 | External Data Integration | Joining external sources, feature enrichment |
+| 10 | Storytelling Dashboard | Visualization, narrative, business recs |
 
 ## Quick Start
 

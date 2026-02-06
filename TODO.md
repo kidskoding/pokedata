@@ -1,19 +1,23 @@
-# TODO — Datathon Skill Preparation
+# TODO — Data Science, Engineering & Analytics with Pokemon
 
 All work lives in Jupyter notebooks. Shared constants (TYPE_COLORS, paths, etc.)
 and helper functions are defined inline in the notebooks that need them.
 
+These skills carry directly to datathon competitions (UIUC Datathon, etc.)
+and real-world data science work.
+
 ---
 
-## Notebook 00 — Data Pipeline
+## Notebook 00 — Data Pipeline & Engineering
 
-**Datathon skill:** Data acquisition, cleaning, feature engineering
+**Skills:** API data acquisition, ETL, data cleaning, feature engineering
 
 - [ ] Define constants: TYPE_COLORS dict, STATS list, data paths
 - [ ] Fetch all ~1025 Pokemon via pokebase with tqdm progress bar (id, name, height, weight, base_experience, types, 6 base stats, generation, is_legendary, is_mythical, capture_rate, growth_rate, color, shape)
 - [ ] Fetch Pokedex flavor text (English) via pokemon-species endpoint
 - [ ] Cache raw API responses to `data/cache/` so re-runs don't re-fetch
 - [ ] Save raw data to `data/raw/pokemon_raw.csv` and `data/raw/flavor_text.csv`
+- [ ] Load raw CSV into a SQLite database (`data/processed/pokemon.db`) for SQL practice
 - [ ] Clean: handle missing values, convert units (decimeters to meters, hectograms to kg)
 - [ ] Feature engineering: total_stats, offensive_power, defensive_bulk, physical_ratio, speed_tier, stat_variance, is_dual_type, stat_percentile
 - [ ] Save processed data to `data/processed/pokemon_clean.csv`
@@ -23,9 +27,10 @@ and helper functions are defined inline in the notebooks that need them.
 
 ## Notebook 01 — EDA & Data Profiling
 
-**Datathon skill:** Exploratory data analysis
+**Skills:** Exploratory data analysis, Pandas, SQL queries, visualization
 
 - [ ] Dataset shape, dtypes, missing value heatmap, duplicates check
+- [ ] SQL queries against pokemon.db: aggregations, GROUP BY, JOINs, window functions
 - [ ] Univariate: histograms + KDE for each stat, box plots, value counts for categoricals
 - [ ] Bivariate: correlation heatmap, scatter matrix of 6 base stats, violin plots by type and generation
 - [ ] Statistical summaries: mean, median, skew, kurtosis for each stat
@@ -36,49 +41,49 @@ and helper functions are defined inline in the notebooks that need them.
 
 ## Notebook 02 — Classification
 
-**Datathon skill:** Binary + multiclass classification (like credit risk 2025)
+**Skills:** Binary + multiclass classification, class imbalance handling, sklearn, XGBoost
 
-- [ ] Binary: predict legendary status (~5% positive class, like fraud/default)
+- [ ] Binary: predict legendary status (~5% positive class, mirrors fraud/default detection)
 - [ ] Handle class imbalance: SMOTE or class_weight
 - [ ] Models: Logistic Regression, Random Forest, XGBoost, SVM
 - [ ] Metrics: confusion matrix, accuracy, precision, recall, F1, ROC-AUC curve
-- [ ] Multiclass: predict primary type (18 classes, like customer segment classification)
+- [ ] Multiclass: predict primary type (18 classes, mirrors customer segment classification)
 - [ ] Feature importance analysis (permutation importance, built-in importances)
 - [ ] 5-fold stratified cross-validation for all models
 
 ---
 
-## Notebook 03 — Regression
+## Notebook 03 — Regression & Forecasting
 
-**Datathon skill:** Regression modeling (like spending forecasting 2025)
+**Skills:** Regression modeling, regularization, residual diagnostics
 
 - [ ] Target: predict total_stats from non-stat features (type, generation, legendary, capture_rate, weight, height)
 - [ ] Models: Linear Regression, Ridge, Lasso, Random Forest, XGBoost
 - [ ] Metrics: R-squared, RMSE, MAE, residual plots
 - [ ] Regularization analysis: Ridge/Lasso coefficient paths as a function of alpha
 - [ ] Residual diagnostics: Q-Q plot, residuals vs fitted, heteroscedasticity check
-- [ ] Interpret coefficients in business language
+- [ ] Interpret coefficients in business language (e.g., "capture_rate decrease of X predicts Y higher total_stats")
 
 ---
 
 ## Notebook 04 — Clustering & Segmentation
 
-**Datathon skill:** Customer segmentation (like risk tiers 2025)
+**Skills:** Unsupervised learning, dimensionality reduction, segment profiling
 
 - [ ] Standardize 6 base stats (StandardScaler)
 - [ ] K-Means: elbow method + silhouette analysis, optimal k
 - [ ] Profile clusters as archetypes (Sweeper, Tank, Wall, Generalist)
 - [ ] Hierarchical clustering + dendrogram
 - [ ] PCA: reduce to 2 components, plot clusters, explain variance ratios
-- [ ] t-SNE visualization (optional but impressive)
-- [ ] Business-style segment recommendations
+- [ ] t-SNE visualization (optional but impressive in presentations)
+- [ ] Business-style segment recommendations (actionable profiles for each cluster)
 - [ ] Cross-tabulation: cluster vs type, generation, legendary status
 
 ---
 
-## Notebook 05 — Time Series & Trends
+## Notebook 05 — Time Series & Trend Analysis
 
-**Datathon skill:** Temporal analysis (like stock prediction 2019, economic impact 2018)
+**Skills:** Temporal trends, decomposition, forecasting, statsmodels
 
 - [ ] Aggregate stats by generation (1-9) as time proxy
 - [ ] Power creep: mean/median total_stats per gen, trend regression (OLS)
@@ -91,7 +96,7 @@ and helper functions are defined inline in the notebooks that need them.
 
 ## Notebook 06 — NLP & Text Analysis
 
-**Datathon skill:** Text analytics (like chatbot satisfaction 2023, call transcripts 2024)
+**Skills:** Text preprocessing, sentiment analysis, TF-IDF, text-based prediction
 
 - [ ] Load Pokedex flavor text from `data/raw/flavor_text.csv`
 - [ ] Preprocessing: tokenize, remove stopwords, lemmatize (nltk)
@@ -103,9 +108,23 @@ and helper functions are defined inline in the notebooks that need them.
 
 ---
 
-## Notebook 07 — Model Comparison & Evaluation
+## Notebook 07 — Hypothesis Testing & Statistical Inference
 
-**Datathon skill:** Rigorous model selection (judges want this)
+**Skills:** t-tests, ANOVA, chi-squared, statistical rigor
+
+- [ ] t-test: are legendary Pokemon stats significantly higher than non-legendary?
+- [ ] ANOVA: do base stat means differ significantly across types?
+- [ ] Chi-squared: is the distribution of dual-types independent of generation?
+- [ ] Mann-Whitney U: non-parametric comparison of stat distributions
+- [ ] Effect size (Cohen's d) alongside p-values
+- [ ] Multiple testing correction (Bonferroni) when running many comparisons
+- [ ] Summarize which hypotheses from notebook 01 are statistically supported
+
+---
+
+## Notebook 08 — Model Comparison & Evaluation
+
+**Skills:** Rigorous model selection, hyperparameter tuning, justification
 
 - [ ] Re-run all classification models with consistent 5-fold stratified CV
 - [ ] Re-run all regression models with consistent 5-fold CV
@@ -116,9 +135,22 @@ and helper functions are defined inline in the notebooks that need them.
 
 ---
 
-## Notebook 08 — Storytelling Dashboard
+## Notebook 09 — External Data Integration
 
-**Datathon skill:** Presentation + business recommendations (wins the competition)
+**Skills:** Joining external datasets, enrichment, thinking beyond one source
+
+- [ ] Pull external data: Smogon competitive usage tiers OR community popularity rankings
+- [ ] Join with base Pokemon dataset on name/id
+- [ ] Analyze: do competitive viability and base stats correlate?
+- [ ] Feature enrichment: add external features and re-run a model from notebook 02 or 03
+- [ ] Compare model performance with vs without external features
+- [ ] Document data sourcing methodology and limitations
+
+---
+
+## Notebook 10 — Storytelling & Presentation Dashboard
+
+**Skills:** Data visualization, narrative, business recommendations
 
 - [ ] Executive summary: 3-5 key findings in plain language
 - [ ] Publication-quality charts (consistent TYPE_COLORS, annotations, titles)
@@ -128,7 +160,7 @@ and helper functions are defined inline in the notebooks that need them.
   - Power creep = inflationary market trend
 - [ ] Plotly interactive charts for type distribution, clusters, time series
 - [ ] Save all figures at 300 DPI to `outputs/figures/`
-- [ ] Methodology appendix for datathon submission
+- [ ] Methodology appendix suitable for a competition submission
 
 ---
 
@@ -136,7 +168,6 @@ and helper functions are defined inline in the notebooks that need them.
 
 - [ ] **Streamlit dashboard** — deploy an interactive web app for the findings
 - [ ] **Deep learning** — simple neural net for classification (PyTorch/TensorFlow)
-- [ ] **External data integration** — pull Smogon competitive usage tiers, join with base stats
 - [ ] **SHAP values** — explain individual predictions with SHAP library
 - [ ] **Ensemble methods** — stacking/voting classifier combining best models
 - [ ] **Anomaly detection** — Isolation Forest or DBSCAN on stat data
