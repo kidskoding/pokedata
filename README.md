@@ -1,17 +1,26 @@
 # pokedata
 
-Data science, engineering, and analytics with Pokemon in Python.
-
-Practice the full spectrum of data engineering, analytics, and data science skills
-using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL
-analytics, predictive modeling, NLP, and model interpretability. Designed for
-**intern / co-op / new grad** portfolios, with stretch content for mid and senior roles.
+> data science, engineering, and analytics with Pokemon in Python!
 
 > A production-grade data platform built on Pokémon data. Every notebook is a deep
 > standalone showcase of one discipline. The engineering pipeline is the foundation:
 > analytics and science notebooks read from Gold/Silver Delta tables, never raw files.
 > Mirrors how **Databricks**-heavy companies like **JP Morgan Chase**, **Walmart**,
-> **John Deere**, and **Dow** operate.
+> **John Deere**, and **Dow** operate
+
+This workbook was built to help people (specifically **students**) **understand all three data roles and how they differ** and provides hands-on work to help **land jobs** in any or all of them
+
+I aim to make these roles **interesting** by using **Pokemon data** to give a concrete glimpse of how each role works: stats become features, types become segments, and generations become time periods
+
+- **Data engineering** builds and maintains the infrastructure that moves and stores data. You’ll work through async API ingestion (caching, retry, rate limiting), the medallion architecture (Bronze raw landing → Silver cleaned/conformed → Gold aggregated), Delta Lake (ACID, time travel, CDF), file formats (Parquet, JSON, CSV), ETL vs ELT, data quality rules, and pipeline testing. Beyond entry-level: streaming, orchestration, observability, and security
+- **Data analytics** turns data into insights and recommendations. You’ll use SQL (GROUP BY, window functions, CTEs, query optimization), profiling (schema, missingness, cardinality), EDA (univariate, bivariate, outlier detection), hypothesis testing, and KPI frameworks. Beyond entry-level: cohort analysis, interactive dashboards, executive reports, and forecasting.
+- **Data science** builds predictive and prescriptive models. You’ll cover feature engineering, classification (binary, multiclass, handling imbalance), regression, clustering, interpretability (SHAP, PDP, ICE), NLP (sentiment, topic modeling, text classification), and the full ML lifecycle. Beyond entry-level: hyperparameter tuning, ensembles, experiment tracking, and model cards for production.
+
+> Each track has its own notebooks and together show how a real data platform works end-to-end
+
+Practice the full spectrum of skills using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL analytics to predictive modeling, NLP, and model interpretability. Built for **intern / co-op / new grad** portfolios, with stretch content for mid and senior roles.
+
+**Runs on Databricks**: This workbook is designed for [Databricks](https://www.databricks.com/) — the lakehouse platform used by many enterprise data teams. **Please run these notebooks via Databricks.** With the free [Community Edition](https://community.cloud.databricks.com), Apache Spark (the enterprise method / tool for processing large-scale data) comes pre-configured, startup is instant, and the Bronze/Silver/Gold pipeline matches real-world production setups. Connect your GitHub repo via Repos and run everything in the cloud! (The steps will be shown in the **[Quick Start](#quick-start)** section of this README)
 
 ## Notebook Structure
 
@@ -115,7 +124,7 @@ analytics, predictive modeling, NLP, and model interpretability. Designed for
 | 22 | experiment_tracking | JSONL logging, reproducibility |
 | 23 | model_cards | Fairness, failure modes, production |
 
-## Architecture
+## Architecture - How all 3 roles flow together
 
 ```text
 PokeAPI REST (18 endpoints, ~50,000+ records)
@@ -150,20 +159,19 @@ Analytics      Data Science
 
 ## Quick Start
 
-**Local (uv + Jupyter):**
-```bash
-uv sync
-uv run jupyter notebook
-# Run notebooks/engineering/00_ingestion.ipynb first
-```
+**Databricks:** All notebooks are designed to run on Databricks. The engineering pipeline uses Spark and Delta Lake; running locally would require a slow JVM startup. On Databricks, Spark is ready instantly and the architecture mirrors production.
 
-**Databricks:**
-1. Create a Community Edition cluster (Runtime 13.x LTS, single node)
-2. Install cluster libraries: `aiohttp`, `tqdm`, `optuna`, `shap`, `imbalanced-learn`,
+1. Sign up at [community.cloud.databricks.com](https://community.cloud.databricks.com) (free)
+2. Create a cluster: Runtime 13.x LTS, single node
+3. Install cluster libraries: `aiohttp`, `tqdm`, `optuna`, `shap`, `imbalanced-learn`,
    `lightgbm`, `sentence-transformers`, `pyLDAvis`, `missingno`, `boruta`, `mord`
-3. Upload `src/` to `dbfs:/FileStore/pokedata/src/`
-4. Run `notebooks/engineering/` in order (00 → 19) to build the Delta pipeline
-5. Then run any `analytics/` or `science/` notebook
+4. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/you/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
+5. **Or manual upload:** Create `FileStore/pokedata/` in DBFS and upload `src/` there
+6. Run `00_ingestion` first (creates cache in DBFS), then `01_file_formats`, etc.
+
+With Repos, code stays in sync with GitHub. Data (cache, Delta tables) is written to `dbfs:/FileStore/pokedata/` regardless.
+
+**Local (optional):** `uv sync && uv run jupyter notebook` — `00_ingestion` runs locally; notebooks 01+ require Databricks
 
 ## Project Structure
 
