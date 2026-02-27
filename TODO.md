@@ -12,8 +12,8 @@ and real-world data science work.
 
 **Skills:** API data acquisition, ETL, data cleaning, feature engineering
 
-- [ ] Define constants: TYPE_COLORS dict, STATS list, data paths
-- [ ] Fetch all ~1025 Pokemon via pokebase with tqdm progress bar (id, name, height, weight, base_experience, types, 6 base stats, generation, is_legendary, is_mythical, capture_rate, growth_rate, color, shape)
+- [x] Define constants: TYPE_COLORS dict, STATS list, data paths
+- [x] Fetch all ~1025 Pokemon via pokebase with tqdm progress bar (id, name, height, weight, base_experience, types, 6 base stats, generation, is_legendary, is_mythical, capture_rate, growth_rate, color, shape)
 - [ ] Fetch Pokedex flavor text (English) via pokemon-species endpoint
 - [ ] Cache raw API responses to `data/cache/` so re-runs don't re-fetch
 - [ ] Save raw data to `data/raw/pokemon_raw.csv` and `data/raw/flavor_text.csv`

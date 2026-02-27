@@ -21,4 +21,5 @@ dependencies = [
     "ipykernel>=6.29",
     "requests>=2.32",
     "tqdm>=4.66",
+    "aiohttp>=3.13.3",
 ]
