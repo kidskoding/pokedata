@@ -1,7 +1,7 @@
 # TODO — Data Science (notebooks/science/)
 
-> All notebooks run on Databricks Community Edition.
-> All data reads from Gold or Silver Delta tables — never raw files.
+> All notebooks run on **Databricks**
+> All data reads from Gold or Silver Delta tables — never raw files
 > Start each notebook with:
 > ```python
 > import sys

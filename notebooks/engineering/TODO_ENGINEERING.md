@@ -1,6 +1,6 @@
 # TODO — Data Engineering (notebooks/engineering/)
 
-> All notebooks run on Databricks Community Edition.
+> All notebooks run on **Databricks**
 > Each notebook starts with:
 > ```python
 > import sys
