@@ -169,7 +169,7 @@ Analytics      Data Science
 5. **Or manual upload:** Create `FileStore/pokedata/` in DBFS and upload `src/` there
 6. Run `00_ingestion` first (creates cache in DBFS), then `01_file_formats`, etc.
 
-With Repos, code stays in sync with GitHub. Data (cache, Delta tables) is written to `dbfs:/FileStore/pokedata/` regardless.
+With Repos, code stays in sync with GitHub. Data (cache, Delta tables) is written to `dbfs:/FileStore/pokedata/` regardless
 
 **Local (optional):** `uv sync && uv run jupyter notebook` — `00_ingestion` runs locally; notebooks 01+ require Databricks
 
