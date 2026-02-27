@@ -19,27 +19,28 @@ pokedata/
 │   └── features.py                        # (to add)
 │
 ├── notebooks/
-│   ├── engineering/                       # 20 notebooks — 00-10 entry, 11-19 beyond
-│   │   ├── 00_ingestion.ipynb
-│   │   ├── 01_file_formats.ipynb
-│   │   ├── 02_bronze.ipynb
-│   │   ├── 03_data_modeling.ipynb
-│   │   ├── 04_silver.ipynb
-│   │   ├── 05_gold.ipynb
-│   │   ├── 06_etl_vs_elt.ipynb
-│   │   ├── 07_warehouse_concepts.ipynb
-│   │   ├── 08_delta_patterns.ipynb
-│   │   ├── 09_data_quality.ipynb
-│   │   ├── 10_pipeline_testing.ipynb
-│   │   ├── 11_distributed_systems.ipynb
-│   │   ├── 12_streaming.ipynb
-│   │   ├── 13_storage_optimization.ipynb
-│   │   ├── 14_query_optimization.ipynb
-│   │   ├── 15_data_modeling_advanced.ipynb
-│   │   ├── 16_cdc_patterns.ipynb
-│   │   ├── 17_orchestration.ipynb
-│   │   ├── 18_observability.ipynb
-│   │   └── 19_security_governance.ipynb
+│   ├── engineering/                       # 21 notebooks — 00-11 entry, 12-20 beyond
+│   │   ├── 00_setup.ipynb
+│   │   ├── 01_ingestion.ipynb
+│   │   ├── 02_file_formats.ipynb
+│   │   ├── 03_bronze.ipynb
+│   │   ├── 04_data_modeling.ipynb
+│   │   ├── 05_silver.ipynb
+│   │   ├── 06_gold.ipynb
+│   │   ├── 07_etl_vs_elt.ipynb
+│   │   ├── 08_warehouse_concepts.ipynb
+│   │   ├── 09_delta_patterns.ipynb
+│   │   ├── 10_data_quality.ipynb
+│   │   ├── 11_pipeline_testing.ipynb
+│   │   ├── 12_distributed_systems.ipynb
+│   │   ├── 13_streaming.ipynb
+│   │   ├── 14_storage_optimization.ipynb
+│   │   ├── 15_query_optimization.ipynb
+│   │   ├── 16_data_modeling_advanced.ipynb
+│   │   ├── 17_cdc_patterns.ipynb
+│   │   ├── 18_orchestration.ipynb
+│   │   ├── 19_observability.ipynb
+│   │   └── 20_security_governance.ipynb
 │   │
 │   ├── analytics/                         # 20 notebooks — SQL, EDA, BI
 │   │   ├── 00_group_by.ipynb
@@ -112,16 +113,16 @@ pokedata/
 ```
 PokeAPI (REST)
       │
-      ▼  engineering/00_ingestion
+      ▼  engineering/01_ingestion
 data/cache/ (JSON)
       │
-      ▼  engineering/02_bronze
+      ▼  engineering/03_bronze
 Delta Bronze (18 tables)
       │
-      ▼  engineering/04_silver
+      ▼  engineering/05_silver
 Delta Silver (20 tables)
       │
-      ▼  engineering/05_gold
+      ▼  engineering/06_gold
 Delta Gold (10 tables)
       │
       ├──────────────────┬──────────────────┐
@@ -132,12 +133,12 @@ analytics/          science/          BI / Dashboards
 
 ## Skill Coverage by Track
 
-### Engineering (20 notebooks) — intern → senior
+### Engineering (21 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry (core)** | 00–10 | Ingestion, file formats, bronze, data modeling, silver, gold, ETL/ELT, warehouse, Delta, DQ, testing |
-| **Beyond entry** | 11–19 | Spark internals, streaming, storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
+| **Entry (core)** | 00–11 | Setup, ingestion, file formats, bronze, data modeling, silver, gold, ETL/ELT, warehouse, Delta, DQ, testing |
+| **Beyond entry** | 12–20 | Spark internals, streaming, storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
 
 ### Analytics (20 notebooks) — intern → senior
 
@@ -192,5 +193,5 @@ Per-notebook task details:
 ```bash
 uv sync
 uv run jupyter notebook
-# Run engineering/00_ingestion first (or 00_data_pipeline for CSV path)
+# Run engineering/00_setup once, then 01_ingestion first (or 00_data_pipeline for CSV path)
 ```

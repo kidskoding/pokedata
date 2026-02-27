@@ -20,41 +20,42 @@ I aim to make these roles **interesting** by using **Pokemon data** to give a co
 
 Practice the full spectrum of skills using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL analytics to predictive modeling, NLP, and model interpretability. Built for **intern / co-op / new grad** portfolios, with stretch content for mid and senior roles.
 
-**Runs on Databricks**: This workbook is designed for [Databricks](https://www.databricks.com/) — the lakehouse platform used by many enterprise data teams. **Please run these notebooks via Databricks.** Without Databricks, this workbook will not work!! With the free [Community Edition](https://community.cloud.databricks.com), Apache Spark (the enterprise method / tool for processing large-scale data) comes pre-configured, startup is instant, and the Bronze/Silver/Gold medallion / pipeline matches real-world production setups. Connect your GitHub repo via Repos and run everything in the cloud! (The steps will be shown in the **[Quick Start](#quick-start)** section of this README)
+**Runs on Databricks:** All notebooks (engineering, analytics, science) run on [Databricks](https://www.databricks.com/) — mirrors how enterprise teams operate: one platform, shared data, no export/import. Connect your repo via Repos and run everything in the cloud.
 
 ## Notebook Structure
 
-### Engineering (`notebooks/engineering/`) — 20 notebooks
+### Engineering (`notebooks/engineering/`) — 21 notebooks
 
-**Core (intern/co-op/new grad):** 00–10
-
-| # | Notebook | Skill Area |
-|---|----------|------------|
-| 00 | Ingestion | Async PokeAPI fetch, cache, retry, rate limiting |
-| 01 | File Formats | Parquet vs JSON vs CSV, columnar vs row |
-| 02 | Bronze | Raw landing zone, append-only, CDF |
-| 03 | Data Modeling | Star schema, fact vs dimension, SCD |
-| 04 | Silver | Cleaning, conforming, junction tables |
-| 05 | Gold | Aggregations, partitioning, serving layer |
-| 06 | ETL vs ELT | Architecture patterns, push-down |
-| 07 | Warehouse Concepts | OLAP vs OLTP, lakehouse |
-| 08 | Delta Patterns | MERGE, time travel, CDF, OPTIMIZE, ZORDER |
-| 09 | Data Quality | DQ rules, quarantine, pipeline contracts |
-| 10 | Pipeline Testing | Unit tests, integration tests, pytest |
-
-**Beyond entry-level:** 11–19
+**Core (intern/co-op/new grad):** 00–11
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 11 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
-| 12 | streaming | Structured Streaming, watermarks, stateful ops |
-| 13 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
-| 14 | query_optimization | Explain plans, AQE, broadcast/skew joins |
-| 15 | data_modeling_advanced | Data vault, OBT, medallion patterns |
-| 16 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
-| 17 | orchestration | DAG, DLT, incremental CDF, Workflows |
-| 18 | observability | Monitoring, alerting, lineage |
-| 19 | security_governance | PII, masking, Unity Catalog |
+| 00 | Setup | Run once per cluster — installs deps from pyproject.toml |
+| 01 | Ingestion | Async PokeAPI fetch, cache, retry, rate limiting |
+| 02 | File Formats | Parquet vs JSON vs CSV, columnar vs row |
+| 03 | Bronze | Raw landing zone, append-only, CDF |
+| 04 | Data Modeling | Star schema, fact vs dimension, SCD |
+| 05 | Silver | Cleaning, conforming, junction tables |
+| 06 | Gold | Aggregations, partitioning, serving layer |
+| 07 | ETL vs ELT | Architecture patterns, push-down |
+| 08 | Warehouse Concepts | OLAP vs OLTP, lakehouse |
+| 09 | Delta Patterns | MERGE, time travel, CDF, OPTIMIZE, ZORDER |
+| 10 | Data Quality | DQ rules, quarantine, pipeline contracts |
+| 11 | Pipeline Testing | Unit tests, integration tests, pytest |
+
+**Beyond entry-level:** 12–20
+
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 12 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
+| 13 | streaming | Structured Streaming, watermarks, stateful ops |
+| 14 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
+| 15 | query_optimization | Explain plans, AQE, broadcast/skew joins |
+| 16 | data_modeling_advanced | Data vault, OBT, medallion patterns |
+| 17 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
+| 18 | orchestration | DAG, DLT, incremental CDF, Workflows |
+| 19 | observability | Monitoring, alerting, lineage |
+| 20 | security_governance | PII, masking, Unity Catalog |
 
 ### Analytics (`notebooks/analytics/`) — 20 notebooks
 
@@ -159,19 +160,16 @@ Analytics      Data Science
 
 ## Quick Start
 
-**Databricks:** All notebooks are designed to run on Databricks. The engineering pipeline uses Spark and Delta Lake; running locally would require a slow JVM startup. On Databricks, Spark is ready instantly and the architecture mirrors production.
+**Databricks:** All notebooks run on Databricks. Engineering builds the pipeline; analytics and science read from Gold/Silver Delta tables on the same platform.
 
 1. Sign up at [community.cloud.databricks.com](https://community.cloud.databricks.com) (free)
 2. Create a cluster: Runtime 13.x LTS, single node
-3. Install cluster libraries: `aiohttp`, `tqdm`, `optuna`, `shap`, `imbalanced-learn`,
-   `lightgbm`, `sentence-transformers`, `pyLDAvis`, `missingno`, `boruta`, `mord`
-4. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
-5. **Create Unity Catalog** (Data → Catalogs → Create catalog): name `pokedata`. Then create a Volume (Data → Volumes → Create Volume): catalog `pokedata`, schema `default`, volume name `pokedata`. Data is stored at `/Volumes/pokedata/default/pokedata/`.
-6. Run `00_ingestion` first (creates cache), then `01_file_formats`, etc.
+3. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
+4. **Create Unity Catalog** (Data → Catalogs → Create catalog): name `pokedata`. Then create a Volume (Data → Volumes → Create Volume): catalog `pokedata`, schema `default`, volume name `pokedata`. Data is stored at `/Volumes/pokedata/default/pokedata/`.
+5. **Run `00_setup.ipynb` once per cluster** — installs dependencies from `pyproject.toml`; packages are then available to all notebooks.
+6. Run engineering notebooks first (`01_ingestion` → `02_file_formats` → …), then analytics and science read from Gold/Silver.
 
-With Unity Catalog, data (cache, Delta tables) is written to the `pokedata` volume. The catalog is ready for future Bronze/Silver/Gold schemas (`pokedata.bronze`, `pokedata.silver`, `pokedata.gold`).
-
-**Local (optional):** `uv sync && uv run jupyter notebook` — `00_ingestion` runs locally; notebooks 01+ require Databricks
+With Unity Catalog, data (cache, Delta tables) is written to the `pokedata` volume. The catalog is ready for Bronze/Silver/Gold schemas (`pokedata.bronze`, `pokedata.silver`, `pokedata.gold`).
 
 ## Project Structure
 

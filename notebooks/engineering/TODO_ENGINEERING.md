@@ -14,35 +14,45 @@
 
 | # | Notebook | Skills |
 |---|----------|--------|
-| 00 | ingestion | Batch ingestion, idempotency, caching, retry, rate limiting |
-| 01 | file_formats | Parquet vs JSON vs CSV, columnar vs row, compression |
-| 02 | bronze | Raw landing zone, schema-on-read/write, append-only, CDF |
-| 03 | data_modeling | Star schema, fact vs dimension, SCD, wide vs normalized |
-| 04 | silver | Cleaning, conforming, junction tables, null handling |
-| 05 | gold | Aggregations, partitioning, serving layer |
-| 06 | etl_vs_elt | ETL vs ELT, push-down computation |
-| 07 | warehouse_concepts | OLAP vs OLTP, lakehouse, dimensional modeling |
-| 08 | delta_patterns | MERGE, time travel, CDF, OPTIMIZE, ZORDER |
-| 09 | data_quality | DQ rules, quarantine, pipeline contracts |
-| 10 | pipeline_testing | Unit tests, integration tests, pytest |
+| 00 | setup | Run once per cluster — pip install -e . from pyproject.toml |
+| 01 | ingestion | Batch ingestion, idempotency, caching, retry, rate limiting |
+| 02 | file_formats | Parquet vs JSON vs CSV, columnar vs row, compression |
+| 03 | bronze | Raw landing zone, schema-on-read/write, append-only, CDF |
+| 04 | data_modeling | Star schema, fact vs dimension, SCD, wide vs normalized |
+| 05 | silver | Cleaning, conforming, junction tables, null handling |
+| 06 | gold | Aggregations, partitioning, serving layer |
+| 07 | etl_vs_elt | ETL vs ELT, push-down computation |
+| 08 | warehouse_concepts | OLAP vs OLTP, lakehouse, dimensional modeling |
+| 09 | delta_patterns | MERGE, time travel, CDF, OPTIMIZE, ZORDER |
+| 10 | data_quality | DQ rules, quarantine, pipeline contracts |
+| 11 | pipeline_testing | Unit tests, integration tests, pytest |
 
 ## Beyond entry-level (mid / senior)
 
 | # | Notebook | Focus |
 |---|----------|-------|
-| 11 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
-| 12 | streaming | Structured Streaming, watermarks, stateful ops |
-| 13 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
-| 14 | query_optimization | Explain plans, AQE, broadcast/skew joins |
-| 15 | data_modeling_advanced | Data vault, OBT, medallion patterns |
-| 16 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
-| 17 | orchestration | DAG, DLT, incremental CDF, Workflows |
-| 18 | observability | Monitoring, alerting, lineage |
-| 19 | security_governance | PII, masking, Unity Catalog |
+| 12 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
+| 13 | streaming | Structured Streaming, watermarks, stateful ops |
+| 14 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
+| 15 | query_optimization | Explain plans, AQE, broadcast/skew joins |
+| 16 | data_modeling_advanced | Data vault, OBT, medallion patterns |
+| 17 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
+| 18 | orchestration | DAG, DLT, incremental CDF, Workflows |
+| 19 | observability | Monitoring, alerting, lineage |
+| 20 | security_governance | PII, masking, Unity Catalog |
 
 ---
 
-## 00_ingestion.ipynb — Batch Ingestion & Caching
+## 00_setup.ipynb — Setup (run once per cluster)
+
+**Skills:** Environment setup, dependency installation
+
+- [ ] Run `pip install -e .` from project root (pyproject.toml)
+- [ ] Packages available to all notebooks on the cluster
+
+---
+
+## 01_ingestion.ipynb — Batch Ingestion & Caching
 
 **Skills:** Batch ingestion, idempotency, caching, retry, rate limiting, manifests, ETL vs ELT intro
 
@@ -59,7 +69,7 @@
 
 ---
 
-## 01_file_formats.ipynb — File Formats & Storage
+## 02_file_formats.ipynb — File Formats & Storage
 
 **Skills:** Parquet vs JSON vs CSV vs Avro vs Delta, columnar vs row, compression, when to use each
 
@@ -71,7 +81,7 @@
 
 ---
 
-## 02_bronze.ipynb — Raw Landing Zone
+## 03_bronze.ipynb — Raw Landing Zone
 
 **Skills:** Raw landing zone, schema-on-read vs schema-on-write, append-only, audit trails, CDF
 
@@ -89,7 +99,7 @@
 
 ---
 
-## 03_data_modeling.ipynb — Data Modeling Fundamentals
+## 04_data_modeling.ipynb — Data Modeling Fundamentals
 
 **Skills:** Star schema, snowflake, SCD Type 1/2/3, fact vs dimension tables, normalization, wide tables
 
@@ -101,7 +111,7 @@
 
 ---
 
-## 04_silver.ipynb — Bronze → Silver Cleaning & Conforming
+## 05_silver.ipynb — Bronze → Silver Cleaning & Conforming
 
 **Skills:** Cleaning, conforming, junction tables, CDC, deduplication, null handling
 
@@ -189,7 +199,7 @@
 
 ---
 
-## 05_gold.ipynb — Silver → Gold Aggregations & Serving
+## 06_gold.ipynb — Silver → Gold Aggregations & Serving
 
 **Skills:** Aggregation design, partitioning strategy, serving layer, wide vs normalized
 
@@ -256,7 +266,7 @@
 
 ---
 
-## 06_etl_vs_elt.ipynb — ETL vs ELT Architecture
+## 07_etl_vs_elt.ipynb — ETL vs ELT Architecture
 
 **Skills:** ETL vs ELT architecture, push-down computation, when each pattern applies
 
@@ -268,7 +278,7 @@
 
 ---
 
-## 07_warehouse_concepts.ipynb — Warehouse & Lakehouse Concepts
+## 08_warehouse_concepts.ipynb — Warehouse & Lakehouse Concepts
 
 **Skills:** OLAP vs OLTP, normalization levels, why lakehouses exist, dimensional modeling
 
@@ -279,7 +289,7 @@
 
 ---
 
-## 08_delta_patterns.ipynb — Delta Lake Engineering Patterns
+## 09_delta_patterns.ipynb — Delta Lake Engineering Patterns
 
 **Skills:** MERGE, time travel, CDF, OPTIMIZE, ZORDER, VACUUM, schema evolution, small files
 
@@ -294,7 +304,7 @@
 
 ---
 
-## 09_data_quality.ipynb — DQ Framework & Validation
+## 10_data_quality.ipynb — DQ Framework & Validation
 
 **Skills:** DQ dimensions, rule engines, quarantine, Great Expectations, pipeline contracts
 
@@ -307,7 +317,7 @@
 
 ---
 
-## 10_pipeline_testing.ipynb — Pipeline Testing
+## 11_pipeline_testing.ipynb — Pipeline Testing
 
 **Skills:** Unit testing transforms, integration testing, test data generation, pytest
 
@@ -319,7 +329,7 @@
 
 ---
 
-## 11_distributed_systems.ipynb — Spark Internals & Distributed Systems
+## 12_distributed_systems.ipynb — Spark Internals & Distributed Systems
 
 **Skills:** Shuffles, partitioning, skew, broadcasting, memory management, Spark internals
 
@@ -332,7 +342,7 @@
 
 ---
 
-## 12_streaming.ipynb — Structured Streaming
+## 13_streaming.ipynb — Structured Streaming
 
 **Skills:** Structured Streaming, micro-batch vs continuous, watermarks, late data, stateful ops
 
@@ -344,7 +354,7 @@
 
 ---
 
-## 13_storage_optimization.ipynb — Storage Optimization
+## 14_storage_optimization.ipynb — Storage Optimization
 
 **Skills:** Z-ordering, bloom filters, liquid clustering, compaction, statistics, predicate pushdown
 
@@ -356,7 +366,7 @@
 
 ---
 
-## 14_query_optimization.ipynb — Query Optimization
+## 15_query_optimization.ipynb — Query Optimization
 
 **Skills:** Explain plans, AQE, broadcast joins, skew joins, caching, partitioning benchmarks
 
@@ -369,7 +379,7 @@
 
 ---
 
-## 15_data_modeling_advanced.ipynb — Advanced Data Modeling
+## 16_data_modeling_advanced.ipynb — Advanced Data Modeling
 
 **Skills:** Data vault, one big table, lakehouse modeling, medallion design patterns
 
@@ -380,7 +390,7 @@
 
 ---
 
-## 16_cdc_patterns.ipynb — CDC Patterns
+## 17_cdc_patterns.ipynb — CDC Patterns
 
 **Skills:** CDC beyond CDF, SCD implementation, upsert patterns, log-based CDC concepts
 
@@ -391,7 +401,7 @@
 
 ---
 
-## 17_orchestration.ipynb — Pipeline Orchestration
+## 18_orchestration.ipynb — Pipeline Orchestration
 
 **Skills:** DAG design, dependency management, idempotent pipelines, failure handling, backfill
 
@@ -403,7 +413,7 @@
 
 ---
 
-## 18_observability.ipynb — Pipeline Observability
+## 19_observability.ipynb — Pipeline Observability
 
 **Skills:** Pipeline monitoring, alerting, data freshness, SLAs, lineage, logging patterns
 
@@ -415,7 +425,7 @@
 
 ---
 
-## 19_security_governance.ipynb — Security & Governance
+## 20_security_governance.ipynb — Security & Governance
 
 **Skills:** PII handling, data masking, row/column security, Unity Catalog, data contracts
 
