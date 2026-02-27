@@ -1,5 +1,6 @@
 # TODO — Data Engineering (notebooks/engineering/)
 
+> **Run `notebooks/setup.ipynb` once per cluster** (shared by engineering, analytics, science)
 > All notebooks run on **Databricks**
 > Each notebook starts with:
 > ```python
@@ -14,7 +15,6 @@
 
 | # | Notebook | Skills |
 |---|----------|--------|
-| 00 | setup | Run once per cluster — pip install -e . from pyproject.toml |
 | 01 | ingestion | Batch ingestion, idempotency, caching, retry, rate limiting |
 | 02 | file_formats | Parquet vs JSON vs CSV, columnar vs row, compression |
 | 03 | bronze | Raw landing zone, schema-on-read/write, append-only, CDF |
@@ -40,15 +40,6 @@
 | 18 | orchestration | DAG, DLT, incremental CDF, Workflows |
 | 19 | observability | Monitoring, alerting, lineage |
 | 20 | security_governance | PII, masking, Unity Catalog |
-
----
-
-## 00_setup.ipynb — Setup (run once per cluster)
-
-**Skills:** Environment setup, dependency installation
-
-- [ ] Run `pip install -e .` from project root (pyproject.toml)
-- [ ] Packages available to all notebooks on the cluster
 
 ---
 

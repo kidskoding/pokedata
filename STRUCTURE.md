@@ -19,8 +19,8 @@ pokedata/
 │   └── features.py                        # (to add)
 │
 ├── notebooks/
-│   ├── engineering/                       # 21 notebooks — 00-11 entry, 12-20 beyond
-│   │   ├── 00_setup.ipynb
+│   ├── setup.ipynb                        # Run once per cluster — all tracks
+│   ├── engineering/                      # 20 notebooks — 01-11 entry, 12-20 beyond
 │   │   ├── 01_ingestion.ipynb
 │   │   ├── 02_file_formats.ipynb
 │   │   ├── 03_bronze.ipynb
@@ -43,52 +43,52 @@ pokedata/
 │   │   └── 20_security_governance.ipynb
 │   │
 │   ├── analytics/                         # 20 notebooks — SQL, EDA, BI
-│   │   ├── 00_group_by.ipynb
-│   │   ├── 01_window_functions.ipynb
-│   │   ├── 02_advanced_queries.ipynb
-│   │   ├── 03_query_optimization.ipynb
-│   │   ├── 04_business_sql.ipynb
-│   │   ├── 05_profiling.ipynb
-│   │   ├── 06_univariate.ipynb
-│   │   ├── 07_bivariate.ipynb
-│   │   ├── 08_outlier_detection.ipynb
-│   │   ├── 09_hypothesis_inventory.ipynb
-│   │   ├── 10_kpi_framework.ipynb
-│   │   ├── 11_cohort_analysis.ipynb
-│   │   ├── 12_business_analogies.ipynb
-│   │   ├── 13_plotly_dashboard.ipynb
-│   │   ├── 14_executive_report.ipynb
-│   │   ├── 15_power_creep.ipynb
-│   │   ├── 16_type_diversity.ipynb
-│   │   ├── 17_distribution_shifts.ipynb
-│   │   ├── 18_forecasting.ipynb
-│   │   └── 19_external_integration.ipynb
+│   │   ├── 01_group_by.ipynb
+│   │   ├── 02_window_functions.ipynb
+│   │   ├── 03_advanced_queries.ipynb
+│   │   ├── 04_query_optimization.ipynb
+│   │   ├── 05_business_sql.ipynb
+│   │   ├── 06_profiling.ipynb
+│   │   ├── 07_univariate.ipynb
+│   │   ├── 08_bivariate.ipynb
+│   │   ├── 09_outlier_detection.ipynb
+│   │   ├── 10_hypothesis_inventory.ipynb
+│   │   ├── 11_kpi_framework.ipynb
+│   │   ├── 12_cohort_analysis.ipynb
+│   │   ├── 13_business_analogies.ipynb
+│   │   ├── 14_plotly_dashboard.ipynb
+│   │   ├── 15_executive_report.ipynb
+│   │   ├── 16_power_creep.ipynb
+│   │   ├── 17_type_diversity.ipynb
+│   │   ├── 18_distribution_shifts.ipynb
+│   │   ├── 19_forecasting.ipynb
+│   │   └── 20_external_integration.ipynb
 │   │
 │   └── science/                           # 24 notebooks — ML & NLP
-│       ├── 00_feature_engineering.ipynb
-│       ├── 01_binary_classification.ipynb
-│       ├── 02_multiclass_classification.ipynb
-│       ├── 03_additional_classification.ipynb
-│       ├── 04_interpretability.ipynb
-│       ├── 05_bst_regression.ipynb
-│       ├── 06_stat_regression.ipynb
-│       ├── 07_additional_regression.ipynb
-│       ├── 08_feature_selection.ipynb
-│       ├── 09_stat_clustering.ipynb
-│       ├── 10_cluster_profiling.ipynb
-│       ├── 11_dimensionality_reduction.ipynb
-│       ├── 12_full_feature_clustering.ipynb
-│       ├── 13_text_preprocessing.ipynb
-│       ├── 14_tfidf_analysis.ipynb
-│       ├── 15_sentiment.ipynb
-│       ├── 16_text_classification.ipynb
-│       ├── 17_topic_modeling.ipynb
-│       ├── 18_unified_evaluation.ipynb
-│       ├── 19_hyperparameter_tuning.ipynb
-│       ├── 20_ensembles.ipynb
-│       ├── 21_feature_selection_rigor.ipynb
-│       ├── 22_experiment_tracking.ipynb
-│       └── 23_model_cards.ipynb
+│       ├── 01_feature_engineering.ipynb
+│       ├── 02_binary_classification.ipynb
+│       ├── 03_multiclass_classification.ipynb
+│       ├── 04_additional_classification.ipynb
+│       ├── 05_interpretability.ipynb
+│       ├── 06_bst_regression.ipynb
+│       ├── 07_stat_regression.ipynb
+│       ├── 08_additional_regression.ipynb
+│       ├── 09_feature_selection.ipynb
+│       ├── 10_stat_clustering.ipynb
+│       ├── 11_cluster_profiling.ipynb
+│       ├── 12_dimensionality_reduction.ipynb
+│       ├── 13_full_feature_clustering.ipynb
+│       ├── 14_text_preprocessing.ipynb
+│       ├── 15_tfidf_analysis.ipynb
+│       ├── 16_sentiment.ipynb
+│       ├── 17_text_classification.ipynb
+│       ├── 18_topic_modeling.ipynb
+│       ├── 19_unified_evaluation.ipynb
+│       ├── 20_hyperparameter_tuning.ipynb
+│       ├── 21_ensembles.ipynb
+│       ├── 22_feature_selection_rigor.ipynb
+│       ├── 23_experiment_tracking.ipynb
+│       └── 24_model_cards.ipynb
 │
 ├── samples/
 │   ├── sample_type_visualizer.ipynb
@@ -133,26 +133,26 @@ analytics/          science/          BI / Dashboards
 
 ## Skill Coverage by Track
 
-### Engineering (21 notebooks) — intern → senior
+### Engineering (20 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry (core)** | 00–11 | Setup, ingestion, file formats, bronze, data modeling, silver, gold, ETL/ELT, warehouse, Delta, DQ, testing |
+| **Entry (core)** | 01–11 | Ingestion, file formats, bronze, data modeling, silver, gold, ETL/ELT, warehouse, Delta, DQ, testing |
 | **Beyond entry** | 12–20 | Spark internals, streaming, storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
 
 ### Analytics (20 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry (core)** | 00–10 | GROUP BY, window functions, CTEs, query optimization, business SQL, profiling, univariate/bivariate EDA, outlier detection, hypothesis inventory, KPIs |
-| **Beyond entry** | 11–19 | Cohort analysis, business analogies, Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration |
+| **Entry (core)** | 01–11 | GROUP BY, window functions, CTEs, query optimization, business SQL, profiling, univariate/bivariate EDA, outlier detection, hypothesis inventory, KPIs |
+| **Beyond entry** | 12–20 | Cohort analysis, business analogies, Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration |
 
 ### Science (24 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry (core)** | 00–10 | Feature engineering, classification, interpretability, regression, feature selection, clustering, cluster profiling |
-| **Beyond entry** | 11–23 | Dimensionality reduction, NLP, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, experiment tracking, model cards |
+| **Entry (core)** | 01–11 | Feature engineering, classification, interpretability, regression, feature selection, clustering, cluster profiling |
+| **Beyond entry** | 12–24 | Dimensionality reduction, NLP, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, experiment tracking, model cards |
 
 ## Pokemon-to-Business Domain Mapping
 
@@ -193,5 +193,5 @@ Per-notebook task details:
 ```bash
 uv sync
 uv run jupyter notebook
-# Run engineering/00_setup once, then 01_ingestion first (or 00_data_pipeline for CSV path)
+# Run notebooks/setup once per cluster, then engineering/01_ingestion first
 ```

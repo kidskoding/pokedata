@@ -24,13 +24,14 @@ Practice the full spectrum of skills using Pokemon data — from async API inges
 
 ## Notebook Structure
 
-### Engineering (`notebooks/engineering/`) — 21 notebooks
+**Run first:** `notebooks/setup.ipynb` — run once per cluster; installs deps from `pyproject.toml` for all tracks (engineering, analytics, science).
 
-**Core (intern/co-op/new grad):** 00–11
+### Engineering (`notebooks/engineering/`) — 20 notebooks
+
+**Core (intern/co-op/new grad):** 01–11
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 00 | Setup | Run once per cluster — installs deps from pyproject.toml |
 | 01 | Ingestion | Async PokeAPI fetch, cache, retry, rate limiting |
 | 02 | File Formats | Parquet vs JSON vs CSV, columnar vs row |
 | 03 | Bronze | Raw landing zone, append-only, CDF |
@@ -59,71 +60,71 @@ Practice the full spectrum of skills using Pokemon data — from async API inges
 
 ### Analytics (`notebooks/analytics/`) — 20 notebooks
 
-**Core (intern/co-op/new grad):** 00–10
+**Core (intern/co-op/new grad):** 01–11
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 00 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
-| 01 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
-| 02 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
-| 03 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
-| 04 | business_sql | Translate business questions to SQL |
-| 05 | profiling | Schema, missingno, cardinality, row counts |
-| 06 | univariate | Histograms, KDE, box plots, distributions |
-| 07 | bivariate | Correlation, scatter, violin, heatmaps |
-| 08 | outlier_detection | IQR, Z-score, Mahalanobis |
-| 09 | hypothesis_inventory | H0/H1, test selection, pre-registration |
-| 10 | kpi_framework | KPI design, percentiles, Shannon entropy |
+| 01 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
+| 02 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
+| 03 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
+| 04 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
+| 05 | business_sql | Translate business questions to SQL |
+| 06 | profiling | Schema, missingno, cardinality, row counts |
+| 07 | univariate | Histograms, KDE, box plots, distributions |
+| 08 | bivariate | Correlation, scatter, violin, heatmaps |
+| 09 | outlier_detection | IQR, Z-score, Mahalanobis |
+| 10 | hypothesis_inventory | H0/H1, test selection, pre-registration |
+| 11 | kpi_framework | KPI design, percentiles, Shannon entropy |
 
-**Beyond entry-level:** 11–19
+**Beyond entry-level:** 12–20
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 11 | cohort_analysis | Cohort definition, funnel, lifecycle |
-| 12 | business_analogies | Executive communication, storytelling |
-| 13 | plotly_dashboard | Interactive dashboards, HTML export |
-| 14 | executive_report | Data storytelling, methodology appendix |
-| 15 | power_creep | OLS trends, stratified analysis |
-| 16 | type_diversity | Shannon entropy, before/after analysis |
-| 17 | distribution_shifts | Hypothesis testing (15 tests), corrections |
-| 18 | forecasting | ARIMA, Holt-Winters, prediction intervals |
-| 19 | external_integration | Multi-source, fuzzy matching, enrichment |
+| 12 | cohort_analysis | Cohort definition, funnel, lifecycle |
+| 13 | business_analogies | Executive communication, storytelling |
+| 14 | plotly_dashboard | Interactive dashboards, HTML export |
+| 15 | executive_report | Data storytelling, methodology appendix |
+| 16 | power_creep | OLS trends, stratified analysis |
+| 17 | type_diversity | Shannon entropy, before/after analysis |
+| 18 | distribution_shifts | Hypothesis testing (15 tests), corrections |
+| 19 | forecasting | ARIMA, Holt-Winters, prediction intervals |
+| 20 | external_integration | Multi-source, fuzzy matching, enrichment |
 
 ### Science (`notebooks/science/`) — 24 notebooks
 
-**Core (intern/co-op/new grad):** 00–10
+**Core (intern/co-op/new grad):** 01–11
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 00 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
-| 01 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
-| 02 | multiclass_classification | Per-class metrics, confusion matrix |
-| 03 | additional_classification | Multiple tasks, varying balance |
-| 04 | interpretability | SHAP, PDP, ICE, permutation importance |
-| 05 | bst_regression | Linear/tree regression, regularization, residuals |
-| 06 | stat_regression | Multi-output, per-stat analysis |
-| 07 | additional_regression | Non-stat targets, ordinal regression |
-| 08 | feature_selection | VIF, RFE, Lasso path, mutual information |
-| 09 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
-| 10 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
+| 01 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
+| 02 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
+| 03 | multiclass_classification | Per-class metrics, confusion matrix |
+| 04 | additional_classification | Multiple tasks, varying balance |
+| 05 | interpretability | SHAP, PDP, ICE, permutation importance |
+| 06 | bst_regression | Linear/tree regression, regularization, residuals |
+| 07 | stat_regression | Multi-output, per-stat analysis |
+| 08 | additional_regression | Non-stat targets, ordinal regression |
+| 09 | feature_selection | VIF, RFE, Lasso path, mutual information |
+| 10 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
+| 11 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
 
-**Beyond entry-level:** 11–23
+**Beyond entry-level:** 12–24
 
 | # | Notebook | Skill Area |
 |---|----------|------------|
-| 11 | dimensionality_reduction | PCA, t-SNE, UMAP |
-| 12 | full_feature_clustering | High-dim clustering, ARI, stability |
-| 13 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
-| 14 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
-| 15 | sentiment | VADER, TextBlob, t-tests on sentiment |
-| 16 | text_classification | TF-IDF + ML, sentence transformers |
-| 17 | topic_modeling | LDA, coherence, pyLDAvis |
-| 18 | unified_evaluation | McNemar, Wilcoxon, learning curves |
-| 19 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
-| 20 | ensembles | Voting, stacking, calibration |
-| 21 | feature_selection_rigor | Boruta, ablation, minimal model |
-| 22 | experiment_tracking | JSONL logging, reproducibility |
-| 23 | model_cards | Fairness, failure modes, production |
+| 12 | dimensionality_reduction | PCA, t-SNE, UMAP |
+| 13 | full_feature_clustering | High-dim clustering, ARI, stability |
+| 14 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
+| 15 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
+| 16 | sentiment | VADER, TextBlob, t-tests on sentiment |
+| 17 | text_classification | TF-IDF + ML, sentence transformers |
+| 18 | topic_modeling | LDA, coherence, pyLDAvis |
+| 19 | unified_evaluation | McNemar, Wilcoxon, learning curves |
+| 20 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
+| 21 | ensembles | Voting, stacking, calibration |
+| 22 | feature_selection_rigor | Boruta, ablation, minimal model |
+| 23 | experiment_tracking | JSONL logging, reproducibility |
+| 24 | model_cards | Fairness, failure modes, production |
 
 ## Architecture - How all 3 roles flow together
 
@@ -166,7 +167,7 @@ Analytics      Data Science
 2. Create a cluster: Runtime 13.x LTS, single node
 3. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
 4. **Create Unity Catalog** (Data → Catalogs → Create catalog): name `pokedata`. Then create a Volume (Data → Volumes → Create Volume): catalog `pokedata`, schema `default`, volume name `pokedata`. Data is stored at `/Volumes/pokedata/default/pokedata/`.
-5. **Run `00_setup.ipynb` once per cluster** — installs dependencies from `pyproject.toml`; packages are then available to all notebooks.
+5. **Run `notebooks/setup.ipynb` once per cluster** — installs dependencies from `pyproject.toml`; packages are then available to all notebooks (engineering, analytics, science).
 6. Run engineering notebooks first (`01_ingestion` → `02_file_formats` → …), then analytics and science read from Gold/Silver.
 
 With Unity Catalog, data (cache, Delta tables) is written to the `pokedata` volume. The catalog is ready for Bronze/Silver/Gold schemas (`pokedata.bronze`, `pokedata.silver`, `pokedata.gold`).

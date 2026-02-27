@@ -1,5 +1,6 @@
 # TODO — Data Science (notebooks/science/)
 
+> **Run `notebooks/setup.ipynb` once per cluster** (shared by engineering, analytics, science)
 > All notebooks run on **Databricks**
 > All data reads from Gold or Silver Delta tables — never raw files
 > Start each notebook with:
@@ -17,17 +18,17 @@
 
 | # | Notebook | Skills |
 |---|----------|--------|
-| 00 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
-| 01 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
-| 02 | multiclass_classification | Per-class metrics, confusion matrix |
-| 03 | additional_classification | Multiple tasks, varying balance |
-| 04 | interpretability | SHAP, PDP, ICE, permutation importance |
-| 05 | bst_regression | Linear/tree regression, regularization, residuals |
-| 06 | stat_regression | Multi-output, per-stat analysis |
-| 07 | additional_regression | Non-stat targets, ordinal regression |
-| 08 | feature_selection | VIF, RFE, Lasso path, mutual information |
-| 09 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
-| 10 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
+| 01 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
+| 02 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
+| 03 | multiclass_classification | Per-class metrics, confusion matrix |
+| 04 | additional_classification | Multiple tasks, varying balance |
+| 05 | interpretability | SHAP, PDP, ICE, permutation importance |
+| 06 | bst_regression | Linear/tree regression, regularization, residuals |
+| 07 | stat_regression | Multi-output, per-stat analysis |
+| 08 | additional_regression | Non-stat targets, ordinal regression |
+| 09 | feature_selection | VIF, RFE, Lasso path, mutual information |
+| 10 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
+| 11 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
 
 ---
 
@@ -35,23 +36,23 @@
 
 | # | Notebook | Focus |
 |---|----------|-------|
-| 11 | dimensionality_reduction | PCA, t-SNE, UMAP |
-| 12 | full_feature_clustering | High-dim clustering, ARI, stability |
-| 13 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
-| 14 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
-| 15 | sentiment | VADER, TextBlob, t-tests on sentiment |
-| 16 | text_classification | TF-IDF + ML, sentence transformers |
-| 17 | topic_modeling | LDA, coherence, pyLDAvis |
-| 18 | unified_evaluation | McNemar, Wilcoxon, learning curves |
-| 19 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
-| 20 | ensembles | Voting, stacking, calibration |
-| 21 | feature_selection_rigor | Boruta, ablation, minimal model |
-| 22 | experiment_tracking | JSONL logging, reproducibility |
-| 23 | model_cards | Fairness, failure modes, production |
+| 12 | dimensionality_reduction | PCA, t-SNE, UMAP |
+| 13 | full_feature_clustering | High-dim clustering, ARI, stability |
+| 14 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
+| 15 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
+| 16 | sentiment | VADER, TextBlob, t-tests on sentiment |
+| 17 | text_classification | TF-IDF + ML, sentence transformers |
+| 18 | topic_modeling | LDA, coherence, pyLDAvis |
+| 19 | unified_evaluation | McNemar, Wilcoxon, learning curves |
+| 20 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
+| 21 | ensembles | Voting, stacking, calibration |
+| 22 | feature_selection_rigor | Boruta, ablation, minimal model |
+| 23 | experiment_tracking | JSONL logging, reproducibility |
+| 24 | model_cards | Fairness, failure modes, production |
 
 ---
 
-## 00_feature_engineering.ipynb — Feature Engineering for ML
+## 01_feature_engineering.ipynb — Feature Engineering for ML
 
 **Skills:** sklearn ColumnTransformer, Pipeline, OrdinalEncoder, OneHotEncoder,
 StandardScaler, train/val/test split, feature versioning, feature documentation
@@ -71,7 +72,7 @@ StandardScaler, train/val/test split, feature versioning, feature documentation
       numeric branch (StandardScaler) + ordinal branch (OrdinalEncoder) +
       nominal branch (OneHotEncoder with handle_unknown='ignore')
 - [ ] **Train/val/test split:** 60/20/20, stratified on is_legendary, `random_state=42`
-- [ ] **Feature set versions (document all 3 for ablation in 21_feature_selection_rigor):**
+- [ ] **Feature set versions (document all 3 for ablation in 22_feature_selection_rigor):**
       - v1: stats only (6 columns)
       - v2: stats + categorical encodings
       - v3: v2 + movepool features + type matchup features
@@ -80,7 +81,7 @@ StandardScaler, train/val/test split, feature versioning, feature documentation
 
 ---
 
-## 01_binary_classification.ipynb — Legendary Status Prediction
+## 02_binary_classification.ipynb — Legendary Status Prediction
 
 **Skills:** Binary classification, DummyClassifier baseline, class imbalance (SMOTE, ADASYN,
 class_weight), precision/recall tradeoff, threshold analysis, calibration, 5-fold CV
@@ -107,7 +108,7 @@ class_weight), precision/recall tradeoff, threshold analysis, calibration, 5-fol
 
 ---
 
-## 02_multiclass_classification.ipynb — Primary Type Prediction
+## 03_multiclass_classification.ipynb — Primary Type Prediction
 
 **Skills:** 18-class classification, per-class metrics, confusion matrix analysis,
 class imbalance in multiclass, interpretable results
@@ -126,7 +127,7 @@ class imbalance in multiclass, interpretable results
 
 ---
 
-## 03_additional_classification.ipynb — More Classification Tasks
+## 04_additional_classification.ipynb — More Classification Tasks
 
 **Skills:** Multiple binary and multiclass tasks, varying class balance, task framing
 
@@ -144,7 +145,7 @@ class imbalance in multiclass, interpretable results
 
 ---
 
-## 04_interpretability.ipynb — Model Interpretability
+## 05_interpretability.ipynb — Model Interpretability
 
 **Skills:** SHAP, PDP, ICE, permutation importance, feature consensus
 
@@ -170,7 +171,7 @@ Use best legendary classifier from 01_binary_classification.ipynb throughout.
 
 ---
 
-## 05_bst_regression.ipynb — Predict Total BST
+## 06_bst_regression.ipynb — Predict Total BST
 
 **Skills:** Linear/tree regression, regularization paths, residual diagnostics,
 Cook's distance, Breusch-Pagan test, business coefficient interpretation
@@ -198,7 +199,7 @@ Cook's distance, Breusch-Pagan test, business coefficient interpretation
 
 ---
 
-## 06_stat_regression.ipynb — Predict Individual Stats
+## 07_stat_regression.ipynb — Predict Individual Stats
 
 **Skills:** Multi-output regression, single stat prediction, feature-target analysis
 
@@ -214,7 +215,7 @@ Cook's distance, Breusch-Pagan test, business coefficient interpretation
 
 ---
 
-## 07_additional_regression.ipynb — More Regression Targets
+## 08_additional_regression.ipynb — More Regression Targets
 
 **Skills:** Regression on non-stat targets, ordinal regression, feature transfer
 
@@ -229,7 +230,7 @@ Cook's distance, Breusch-Pagan test, business coefficient interpretation
 
 ---
 
-## 08_feature_selection.ipynb — Feature Selection Methods
+## 09_feature_selection.ipynb — Feature Selection Methods
 
 **Skills:** VIF, RFE, Lasso path, mutual information, minimal model analysis
 
@@ -247,7 +248,7 @@ Cook's distance, Breusch-Pagan test, business coefficient interpretation
 
 ---
 
-## 09_stat_clustering.ipynb — Stat-Based Clustering
+## 10_stat_clustering.ipynb — Stat-Based Clustering
 
 **Skills:** K-Means, Agglomerative, DBSCAN, GMM, cluster validation indices
 
@@ -273,7 +274,7 @@ Cook's distance, Breusch-Pagan test, business coefficient interpretation
 
 ---
 
-## 10_cluster_profiling.ipynb — Cluster Profiling & Segment Briefs
+## 11_cluster_profiling.ipynb — Cluster Profiling & Segment Briefs
 
 **Skills:** Cluster characterization, business labeling, cross-tabulation, radar charts,
 segment strategy writing
@@ -286,13 +287,13 @@ segment strategy writing
 - [ ] Radar charts: average stat profile per cluster (6-axis polygon, one per cluster)
 - [ ] **Segment briefs:** 1 paragraph per cluster:
       who they are, what they do, key member examples, real-world business analogy
-- [ ] **Competitive mapping:** which clusters map to which Smogon tiers? (after Notebook 19)
+- [ ] **Competitive mapping:** which clusters map to which Smogon tiers? (after Notebook 20)
 - [ ] Which cluster is most diverse (highest within-cluster stat variance)?
 - [ ] Which cluster is most "pure" (lowest within-cluster variance)?
 
 ---
 
-## 11_dimensionality_reduction.ipynb — PCA, t-SNE & UMAP
+## 12_dimensionality_reduction.ipynb — PCA, t-SNE & UMAP
 
 **Skills:** PCA with biplots, t-SNE sensitivity analysis, UMAP 2D/3D, comparison framework
 
@@ -315,7 +316,7 @@ segment strategy writing
 
 ---
 
-## 12_full_feature_clustering.ipynb — Full Feature Space Clustering
+## 13_full_feature_clustering.ipynb — Full Feature Space Clustering
 
 **Skills:** High-dimensional clustering, cluster comparison, stability analysis, ARI
 
@@ -334,7 +335,7 @@ segment strategy writing
 
 ---
 
-## 13_text_preprocessing.ipynb — NLP Data & Preprocessing
+## 14_text_preprocessing.ipynb — NLP Data & Preprocessing
 
 **Skills:** spaCy pipeline, custom stopwords, lemmatization, vocabulary statistics,
 corpus construction
@@ -358,7 +359,7 @@ corpus construction
 
 ---
 
-## 14_tfidf_analysis.ipynb — TF-IDF & Frequency Analysis
+## 15_tfidf_analysis.ipynb — TF-IDF & Frequency Analysis
 
 **Skills:** TF-IDF vectorization, word clouds, bigrams/trigrams, co-occurrence networks,
 semantic field analysis
@@ -377,7 +378,7 @@ semantic field analysis
 
 ---
 
-## 15_sentiment.ipynb — Sentiment & Tone Analysis
+## 16_sentiment.ipynb — Sentiment & Tone Analysis
 
 **Skills:** VADER sentiment, TextBlob, sentiment comparisons, trend analysis, t-tests on sentiment
 
@@ -393,7 +394,7 @@ semantic field analysis
 
 ---
 
-## 16_text_classification.ipynb — Text-Based Prediction
+## 17_text_classification.ipynb — Text-Based Prediction
 
 **Skills:** TF-IDF + ML classifiers, sentence transformers, embedding visualization,
 NLP feature enrichment experiment
@@ -417,7 +418,7 @@ NLP feature enrichment experiment
 
 ---
 
-## 17_topic_modeling.ipynb — LDA Topic Modeling
+## 18_topic_modeling.ipynb — LDA Topic Modeling
 
 **Skills:** LDA, coherence scores, pyLDAvis, topic-type cross-tabulation, generational tone analysis
 
@@ -437,7 +438,7 @@ NLP feature enrichment experiment
 
 ---
 
-## 18_unified_evaluation.ipynb — Unified Model Comparison
+## 19_unified_evaluation.ipynb — Unified Model Comparison
 
 **Skills:** Cross-model comparison, McNemar's test, Wilcoxon signed-rank, learning curves,
 validation curves
@@ -457,7 +458,7 @@ validation curves
 
 ---
 
-## 19_hyperparameter_tuning.ipynb — Hyperparameter Optimization
+## 20_hyperparameter_tuning.ipynb — Hyperparameter Optimization
 
 **Skills:** RandomizedSearchCV, Optuna TPE sampler, early stopping, convergence plots,
 hyperparameter importance
@@ -481,7 +482,7 @@ hyperparameter importance
 
 ---
 
-## 20_ensembles.ipynb — Ensemble Methods
+## 21_ensembles.ipynb — Ensemble Methods
 
 **Skills:** Soft voting, stacking, calibrated ensembles, ablation study
 
@@ -504,7 +505,7 @@ hyperparameter importance
 
 ---
 
-## 21_feature_selection_rigor.ipynb — Feature Selection Deep Dive
+## 22_feature_selection_rigor.ipynb — Feature Selection Deep Dive
 
 **Skills:** RFE, Boruta, permutation importance stability, minimal model analysis,
 feature selection consensus
@@ -530,7 +531,7 @@ feature selection consensus
 
 ---
 
-## 22_experiment_tracking.ipynb — Experiment Tracking & Reproducibility
+## 23_experiment_tracking.ipynb — Experiment Tracking & Reproducibility
 
 **Skills:** Lightweight experiment logging, JSONL format, run reproducibility,
 MLflow conceptual comparison
@@ -553,7 +554,7 @@ MLflow conceptual comparison
 
 ---
 
-## 23_model_cards.ipynb — Model Cards & Production Readiness
+## 24_model_cards.ipynb — Model Cards & Production Readiness
 
 **Skills:** Model card writing, fairness analysis, failure mode analysis,
 production monitoring design, data drift concepts

@@ -1,5 +1,6 @@
 # TODO — Data Analytics (notebooks/analytics/)
 
+> **Run `notebooks/setup.ipynb` once per cluster** (shared by engineering, analytics, science)
 > All notebooks run on **Databricks**
 > All data reads from Gold or Silver Delta tables — never raw files
 > Start each notebook with:
@@ -16,17 +17,17 @@
 
 | # | Notebook | Skills |
 |---|----------|--------|
-| 00 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
-| 01 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
-| 02 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
-| 03 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
-| 04 | business_sql | Translate business questions to SQL |
-| 05 | profiling | Schema, missingno, cardinality, row counts |
-| 06 | univariate | Histograms, KDE, box plots, distributions |
-| 07 | bivariate | Correlation, scatter, violin, heatmaps |
-| 08 | outlier_detection | IQR, Z-score, Mahalanobis |
-| 09 | hypothesis_inventory | H0/H1, test selection, pre-registration |
-| 10 | kpi_framework | KPI design, percentiles, Shannon entropy |
+| 01 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
+| 02 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
+| 03 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
+| 04 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
+| 05 | business_sql | Translate business questions to SQL |
+| 06 | profiling | Schema, missingno, cardinality, row counts |
+| 07 | univariate | Histograms, KDE, box plots, distributions |
+| 08 | bivariate | Correlation, scatter, violin, heatmaps |
+| 09 | outlier_detection | IQR, Z-score, Mahalanobis |
+| 10 | hypothesis_inventory | H0/H1, test selection, pre-registration |
+| 11 | kpi_framework | KPI design, percentiles, Shannon entropy |
 
 ---
 
@@ -34,19 +35,19 @@
 
 | # | Notebook | Focus |
 |---|----------|-------|
-| 11 | cohort_analysis | Cohort definition, funnel, lifecycle |
-| 12 | business_analogies | Executive communication, storytelling |
-| 13 | plotly_dashboard | Interactive dashboards, HTML export |
-| 14 | executive_report | Data storytelling, methodology appendix |
-| 15 | power_creep | OLS trends, stratified analysis |
-| 16 | type_diversity | Shannon entropy, before/after analysis |
-| 17 | distribution_shifts | Hypothesis testing (15 tests), corrections |
-| 18 | forecasting | ARIMA, Holt-Winters, prediction intervals |
-| 19 | external_integration | Multi-source, fuzzy matching, enrichment |
+| 12 | cohort_analysis | Cohort definition, funnel, lifecycle |
+| 13 | business_analogies | Executive communication, storytelling |
+| 14 | plotly_dashboard | Interactive dashboards, HTML export |
+| 15 | executive_report | Data storytelling, methodology appendix |
+| 16 | power_creep | OLS trends, stratified analysis |
+| 17 | type_diversity | Shannon entropy, before/after analysis |
+| 18 | distribution_shifts | Hypothesis testing (15 tests), corrections |
+| 19 | forecasting | ARIMA, Holt-Winters, prediction intervals |
+| 20 | external_integration | Multi-source, fuzzy matching, enrichment |
 
 ---
 
-## 00_group_by.ipynb — GROUP BY Patterns
+## 01_group_by.ipynb — GROUP BY Patterns
 
 **Skills:** Spark SQL aggregations, ROLLUP, CUBE, GROUPING SETS, HAVING, GROUPING()
 
@@ -61,7 +62,7 @@
 
 ---
 
-## 01_window_functions.ipynb — Window Functions
+## 02_window_functions.ipynb — Window Functions
 
 **Skills:** ROW_NUMBER, RANK, DENSE_RANK, NTILE, LAG, LEAD, FIRST_VALUE, LAST_VALUE,
 running totals, rolling averages, PERCENT_RANK, CUME_DIST, PERCENTILE_CONT
@@ -81,7 +82,7 @@ running totals, rolling averages, PERCENT_RANK, CUME_DIST, PERCENTILE_CONT
 
 ---
 
-## 02_advanced_queries.ipynb — CTEs, Joins & Pivots
+## 03_advanced_queries.ipynb — CTEs, Joins & Pivots
 
 **Skills:** Multi-level CTEs, recursive CTEs, self-joins, anti-joins, correlated subqueries,
 EXISTS/NOT EXISTS, PIVOT, UNPIVOT, LATERAL VIEW EXPLODE
@@ -91,7 +92,7 @@ EXISTS/NOT EXISTS, PIVOT, UNPIVOT, LATERAL VIEW EXPLODE
 - [ ] **Recursive CTE:** Walk evolution chain tree in pure SQL — find longest chain
 - [ ] **Self-join:** Find all pokemon pairs sharing exact same dual-type combo.
       Count pairs per combo. Which combo has the most members?
-- [ ] **Anti-join:** Gen 1 pokemon NOT in any competitive tier (after Notebook 19)
+- [ ] **Anti-join:** Gen 1 pokemon NOT in any competitive tier (after Notebook 20)
 - [ ] **Correlated subquery:** For each pokemon, find the strongest same-type pokemon
       in the same generation
 - [ ] **EXISTS / NOT EXISTS:** Types with zero legendary representatives
@@ -102,7 +103,7 @@ EXISTS/NOT EXISTS, PIVOT, UNPIVOT, LATERAL VIEW EXPLODE
 
 ---
 
-## 03_query_optimization.ipynb — Explain Plans & Benchmarks
+## 04_query_optimization.ipynb — Explain Plans & Benchmarks
 
 **Skills:** EXPLAIN EXTENDED, predicate pushdown, partition pruning, broadcast joins,
 AQE, DataFrame caching, query benchmarking
@@ -119,7 +120,7 @@ AQE, DataFrame caching, query benchmarking
 
 ---
 
-## 04_business_sql.ipynb — 10 Business Questions
+## 05_business_sql.ipynb — 10 Business Questions
 
 **Skills:** Translating business questions to SQL, complex multi-step queries, result interpretation
 
@@ -138,7 +139,7 @@ Answer each as a standalone, well-commented SQL query with plain-English interpr
 
 ---
 
-## 05_profiling.ipynb — Dataset Profiling
+## 06_profiling.ipynb — Dataset Profiling
 
 **Skills:** Pandas profiling, missingno, cardinality analysis, schema validation, row count auditing
 
@@ -153,7 +154,7 @@ Answer each as a standalone, well-commented SQL query with plain-English interpr
 
 ---
 
-## 06_univariate.ipynb — Univariate Distributions
+## 07_univariate.ipynb — Univariate Distributions
 
 **Skills:** Histograms, KDE, QQ-plots, box plots, value counts, distributional statistics
 
@@ -168,7 +169,7 @@ Answer each as a standalone, well-commented SQL query with plain-English interpr
 
 ---
 
-## 07_bivariate.ipynb — Bivariate & Multivariate Analysis
+## 08_bivariate.ipynb — Bivariate & Multivariate Analysis
 
 **Skills:** Correlation matrices, scatter plots, violin plots, pair plots, type co-occurrence,
 radar charts, heatmaps
@@ -186,7 +187,7 @@ radar charts, heatmaps
 
 ---
 
-## 08_outlier_detection.ipynb — Outlier Detection & Annotation
+## 09_outlier_detection.ipynb — Outlier Detection & Annotation
 
 **Skills:** IQR method, Z-score, Mahalanobis distance, outlier interpretation
 
@@ -201,7 +202,7 @@ radar charts, heatmaps
 
 ---
 
-## 09_hypothesis_inventory.ipynb — Hypothesis Generation & Documentation
+## 10_hypothesis_inventory.ipynb — Hypothesis Generation & Documentation
 
 **Skills:** EDA-driven hypothesis formulation, statistical test selection, pre-registration
 
@@ -227,7 +228,7 @@ For each hypothesis: state H0, H1, planned test, expected direction, rationale.
 
 ---
 
-## 10_kpi_framework.ipynb — KPI Definition & Computation
+## 11_kpi_framework.ipynb — KPI Definition & Computation
 
 **Skills:** KPI design, percentile computation, Shannon entropy, business metric framing
 
@@ -238,13 +239,13 @@ For each hypothesis: state H0, H1, planned test, expected direction, rationale.
 - [ ] **Availability KPI:** avg_versions_available, % exclusive to one version, % in all versions
 - [ ] **Diversity KPI:** Shannon entropy of type distribution per generation
 - [ ] **Completeness KPI:** % pokemon with hidden ability; % with full evolution line; 
-      % with Smogon tier (after Notebook 19)
+      % with Smogon tier (after Notebook 20)
 - [ ] Build a KPI dashboard DataFrame: all KPIs in one table, filterable by generation/type
 - [ ] Identify which generation scores best/worst on each KPI — interpret why
 
 ---
 
-## 11_cohort_analysis.ipynb — Cohort Analysis
+## 12_cohort_analysis.ipynb — Cohort Analysis
 
 **Skills:** Cohort definition, comparative profiling, funnel analysis, lifecycle framing
 
@@ -257,12 +258,12 @@ For each hypothesis: state H0, H1, planned test, expected direction, rationale.
 - [ ] **Capture difficulty cohorts:** Easy (>150) / Medium (45–150) / Hard (<45) / Ultra (<10).
       Profile each cohort: avg stats, type distribution, legendary rate, generation distribution
 - [ ] **Movepool richness cohorts:** Low/Medium/High quartiles.
-      Do richer movepools correlate with higher competitive tiers? (after Notebook 19)
+      Do richer movepools correlate with higher competitive tiers? (after Notebook 20)
 - [ ] For each cohort analysis: visualize with box plots or violin plots; state key finding
 
 ---
 
-## 12_business_analogies.ipynb — Business Framing & Storytelling
+## 13_business_analogies.ipynb — Business Framing & Storytelling
 
 **Skills:** Business analogy construction, executive communication, insight framing
 
@@ -288,7 +289,7 @@ For each hypothesis: state H0, H1, planned test, expected direction, rationale.
 
 ---
 
-## 13_plotly_dashboard.ipynb — Interactive Plotly Dashboard
+## 14_plotly_dashboard.ipynb — Interactive Plotly Dashboard
 
 **Skills:** Plotly Express, Plotly Graph Objects, interactive charts, HTML export
 
@@ -307,7 +308,7 @@ Save final dashboard as `dbfs:/FileStore/pokedata/outputs/dashboard.html`
 
 ---
 
-## 14_executive_report.ipynb — Executive Summary & Report
+## 15_executive_report.ipynb — Executive Summary & Report
 
 **Skills:** Data storytelling, plain-English writing, structured reporting, methodology appendix
 
@@ -324,7 +325,7 @@ Save final dashboard as `dbfs:/FileStore/pokedata/outputs/dashboard.html`
 
 ---
 
-## 15_power_creep.ipynb — Power Creep Analysis
+## 16_power_creep.ipynb — Power Creep Analysis
 
 **Skills:** OLS trend regression, confidence intervals, quadratic vs linear model comparison,
 AIC, log transformation, stratified trend lines
@@ -341,7 +342,7 @@ AIC, log transformation, stratified trend lines
 
 ---
 
-## 16_type_diversity.ipynb — Type Diversity Over Generations
+## 17_type_diversity.ipynb — Type Diversity Over Generations
 
 **Skills:** Shannon entropy, before/after analysis, diversity indices, type balance
 
@@ -356,7 +357,7 @@ AIC, log transformation, stratified trend lines
 
 ---
 
-## 17_distribution_shifts.ipynb — Hypothesis Testing & Statistical Inference
+## 18_distribution_shifts.ipynb — Hypothesis Testing & Statistical Inference
 
 **Skills:** t-tests, ANOVA, chi-squared, Mann-Whitney U, KS test, effect sizes,
 Bonferroni correction, Benjamini-Hochberg FDR
@@ -384,7 +385,7 @@ Test all 15 hypotheses documented in 09_hypothesis_inventory.ipynb:
 
 ---
 
-## 18_forecasting.ipynb — Time Series Forecasting
+## 19_forecasting.ipynb — Time Series Forecasting
 
 **Skills:** ARIMA, Holt-Winters, ACF/PACF, Ljung-Box test, prediction intervals, statsmodels
 
@@ -402,7 +403,7 @@ Test all 15 hypotheses documented in 09_hypothesis_inventory.ipynb:
 
 ---
 
-## 19_external_integration.ipynb — External Data Enrichment
+## 20_external_integration.ipynb — External Data Enrichment
 
 **Skills:** Multi-source pipeline extension, fuzzy name matching, Delta MERGE with schema
 evolution, data lineage, enrichment analysis
