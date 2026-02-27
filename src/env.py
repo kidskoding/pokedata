@@ -25,8 +25,7 @@ def using_databricks() -> bool:
     return "DATABRICKS_RUNTIME_VERSION" in os.environ
 
 if using_databricks():
-    base = "/dbfs/FileStore/pokedata"
-    # Repos: repo is at /Workspace/Repos/.../pokedata with src/ inside
+    base = "/dbfs/tmp/pokedata"
     candidate = find_project_root()
     project_root = candidate if (candidate / "src").exists() else Path(base)
     CACHE_ROOT = Path(f"{base}/cache")
