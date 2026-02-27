@@ -33,19 +33,87 @@ analytics, predictive modeling, NLP, and model interpretability. Designed for
 | 09 | Data Quality | DQ rules, quarantine, pipeline contracts |
 | 10 | Pipeline Testing | Unit tests, integration tests, pytest |
 
-**Beyond entry-level:** 11–19 (Spark internals, streaming, storage/query optimization, CDC, orchestration, observability, security)
+**Beyond entry-level:** 11–19
+
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 11 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
+| 12 | streaming | Structured Streaming, watermarks, stateful ops |
+| 13 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
+| 14 | query_optimization | Explain plans, AQE, broadcast/skew joins |
+| 15 | data_modeling_advanced | Data vault, OBT, medallion patterns |
+| 16 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
+| 17 | orchestration | DAG, DLT, incremental CDF, Workflows |
+| 18 | observability | Monitoring, alerting, lineage |
+| 19 | security_governance | PII, masking, Unity Catalog |
 
 ### Analytics (`notebooks/analytics/`) — 20 notebooks
 
-**Core (intern/co-op/new grad):** 00–10 — GROUP BY, window functions, CTEs, query optimization, business SQL, profiling, univariate/bivariate EDA, outlier detection, hypothesis inventory, KPI framework
+**Core (intern/co-op/new grad):** 00–10
 
-**Beyond entry-level:** 11–19 — Cohort analysis, business analogies, Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 00 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
+| 01 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
+| 02 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
+| 03 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
+| 04 | business_sql | Translate business questions to SQL |
+| 05 | profiling | Schema, missingno, cardinality, row counts |
+| 06 | univariate | Histograms, KDE, box plots, distributions |
+| 07 | bivariate | Correlation, scatter, violin, heatmaps |
+| 08 | outlier_detection | IQR, Z-score, Mahalanobis |
+| 09 | hypothesis_inventory | H0/H1, test selection, pre-registration |
+| 10 | kpi_framework | KPI design, percentiles, Shannon entropy |
+
+**Beyond entry-level:** 11–19
+
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 11 | cohort_analysis | Cohort definition, funnel, lifecycle |
+| 12 | business_analogies | Executive communication, storytelling |
+| 13 | plotly_dashboard | Interactive dashboards, HTML export |
+| 14 | executive_report | Data storytelling, methodology appendix |
+| 15 | power_creep | OLS trends, stratified analysis |
+| 16 | type_diversity | Shannon entropy, before/after analysis |
+| 17 | distribution_shifts | Hypothesis testing (15 tests), corrections |
+| 18 | forecasting | ARIMA, Holt-Winters, prediction intervals |
+| 19 | external_integration | Multi-source, fuzzy matching, enrichment |
 
 ### Science (`notebooks/science/`) — 24 notebooks
 
-**Core (intern/co-op/new grad):** 00–10 — Feature engineering, classification, interpretability, regression, feature selection, clustering, cluster profiling
+**Core (intern/co-op/new grad):** 00–10
 
-**Beyond entry-level:** 11–23 — Dimensionality reduction, NLP, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, experiment tracking, model cards
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 00 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
+| 01 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
+| 02 | multiclass_classification | Per-class metrics, confusion matrix |
+| 03 | additional_classification | Multiple tasks, varying balance |
+| 04 | interpretability | SHAP, PDP, ICE, permutation importance |
+| 05 | bst_regression | Linear/tree regression, regularization, residuals |
+| 06 | stat_regression | Multi-output, per-stat analysis |
+| 07 | additional_regression | Non-stat targets, ordinal regression |
+| 08 | feature_selection | VIF, RFE, Lasso path, mutual information |
+| 09 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
+| 10 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
+
+**Beyond entry-level:** 11–23
+
+| # | Notebook | Skill Area |
+|---|----------|------------|
+| 11 | dimensionality_reduction | PCA, t-SNE, UMAP |
+| 12 | full_feature_clustering | High-dim clustering, ARI, stability |
+| 13 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
+| 14 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
+| 15 | sentiment | VADER, TextBlob, t-tests on sentiment |
+| 16 | text_classification | TF-IDF + ML, sentence transformers |
+| 17 | topic_modeling | LDA, coherence, pyLDAvis |
+| 18 | unified_evaluation | McNemar, Wilcoxon, learning curves |
+| 19 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
+| 20 | ensembles | Voting, stacking, calibration |
+| 21 | feature_selection_rigor | Boruta, ablation, minimal model |
+| 22 | experiment_tracking | JSONL logging, reproducibility |
+| 23 | model_cards | Fairness, failure modes, production |
 
 ## Architecture
 
