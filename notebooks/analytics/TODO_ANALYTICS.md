@@ -12,6 +12,40 @@
 
 ---
 
+## Core — Intern / Co-op / New Grad
+
+| # | Notebook | Skills |
+|---|----------|--------|
+| 00 | group_by | Aggregations, ROLLUP, CUBE, GROUPING SETS |
+| 01 | window_functions | ROW_NUMBER, RANK, LAG/LEAD, running totals |
+| 02 | advanced_queries | CTEs, recursive CTEs, joins, PIVOT/UNPIVOT |
+| 03 | query_optimization | EXPLAIN, predicate pushdown, broadcast joins |
+| 04 | business_sql | Translate business questions to SQL |
+| 05 | profiling | Schema, missingno, cardinality, row counts |
+| 06 | univariate | Histograms, KDE, box plots, distributions |
+| 07 | bivariate | Correlation, scatter, violin, heatmaps |
+| 08 | outlier_detection | IQR, Z-score, Mahalanobis |
+| 09 | hypothesis_inventory | H0/H1, test selection, pre-registration |
+| 10 | kpi_framework | KPI design, percentiles, Shannon entropy |
+
+---
+
+## Beyond entry-level (mid / senior)
+
+| # | Notebook | Focus |
+|---|----------|-------|
+| 11 | cohort_analysis | Cohort definition, funnel, lifecycle |
+| 12 | business_analogies | Executive communication, storytelling |
+| 13 | plotly_dashboard | Interactive dashboards, HTML export |
+| 14 | executive_report | Data storytelling, methodology appendix |
+| 15 | power_creep | OLS trends, stratified analysis |
+| 16 | type_diversity | Shannon entropy, before/after analysis |
+| 17 | distribution_shifts | Hypothesis testing (15 tests), corrections |
+| 18 | forecasting | ARIMA, Holt-Winters, prediction intervals |
+| 19 | external_integration | Multi-source, fuzzy matching, enrichment |
+
+---
+
 ## 00_group_by.ipynb — GROUP BY Patterns
 
 **Skills:** Spark SQL aggregations, ROLLUP, CUBE, GROUPING SETS, HAVING, GROUPING()

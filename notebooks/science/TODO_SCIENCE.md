@@ -13,6 +13,44 @@
 
 ---
 
+## Core — Intern / Co-op / New Grad
+
+| # | Notebook | Skills |
+|---|----------|--------|
+| 00 | feature_engineering | ColumnTransformer, Pipeline, train/val/test split |
+| 01 | binary_classification | Baseline, class imbalance, ROC-AUC, calibration |
+| 02 | multiclass_classification | Per-class metrics, confusion matrix |
+| 03 | additional_classification | Multiple tasks, varying balance |
+| 04 | interpretability | SHAP, PDP, ICE, permutation importance |
+| 05 | bst_regression | Linear/tree regression, regularization, residuals |
+| 06 | stat_regression | Multi-output, per-stat analysis |
+| 07 | additional_regression | Non-stat targets, ordinal regression |
+| 08 | feature_selection | VIF, RFE, Lasso path, mutual information |
+| 09 | stat_clustering | K-Means, hierarchical, DBSCAN, GMM |
+| 10 | cluster_profiling | Segment briefs, radar charts, cross-tabs |
+
+---
+
+## Beyond entry-level (mid / senior)
+
+| # | Notebook | Focus |
+|---|----------|-------|
+| 11 | dimensionality_reduction | PCA, t-SNE, UMAP |
+| 12 | full_feature_clustering | High-dim clustering, ARI, stability |
+| 13 | text_preprocessing | spaCy, lemmatization, vocabulary stats |
+| 14 | tfidf_analysis | TF-IDF, word clouds, co-occurrence |
+| 15 | sentiment | VADER, TextBlob, t-tests on sentiment |
+| 16 | text_classification | TF-IDF + ML, sentence transformers |
+| 17 | topic_modeling | LDA, coherence, pyLDAvis |
+| 18 | unified_evaluation | McNemar, Wilcoxon, learning curves |
+| 19 | hyperparameter_tuning | RandomizedSearchCV, Optuna |
+| 20 | ensembles | Voting, stacking, calibration |
+| 21 | feature_selection_rigor | Boruta, ablation, minimal model |
+| 22 | experiment_tracking | JSONL logging, reproducibility |
+| 23 | model_cards | Fairness, failure modes, production |
+
+---
+
 ## 00_feature_engineering.ipynb — Feature Engineering for ML
 
 **Skills:** sklearn ColumnTransformer, Pipeline, OrdinalEncoder, OneHotEncoder,

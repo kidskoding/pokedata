@@ -19,7 +19,7 @@ pokedata/
 │   └── features.py                        # (to add)
 │
 ├── notebooks/
-│   ├── engineering/                       # 20 notebooks — pipeline & platform
+│   ├── engineering/                       # 20 notebooks — 00-10 entry, 11-19 beyond
 │   │   ├── 00_ingestion.ipynb
 │   │   ├── 01_file_formats.ipynb
 │   │   ├── 02_bronze.ipynb
@@ -29,10 +29,10 @@ pokedata/
 │   │   ├── 06_etl_vs_elt.ipynb
 │   │   ├── 07_warehouse_concepts.ipynb
 │   │   ├── 08_delta_patterns.ipynb
-│   │   ├── 09_distributed_systems.ipynb
-│   │   ├── 10_streaming.ipynb
-│   │   ├── 11_data_quality.ipynb
-│   │   ├── 12_pipeline_testing.ipynb
+│   │   ├── 09_data_quality.ipynb
+│   │   ├── 10_pipeline_testing.ipynb
+│   │   ├── 11_distributed_systems.ipynb
+│   │   ├── 12_streaming.ipynb
 │   │   ├── 13_storage_optimization.ipynb
 │   │   ├── 14_query_optimization.ipynb
 │   │   ├── 15_data_modeling_advanced.ipynb
@@ -136,25 +136,22 @@ analytics/          science/          BI / Dashboards
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry** | 00–05 | Ingestion, file formats, bronze, data modeling, silver, gold |
-| **Mid** | 06–12 | ETL/ELT, warehouse concepts, Delta patterns, Spark internals, streaming, DQ, testing |
-| **Senior** | 13–19 | Storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
+| **Entry (core)** | 00–10 | Ingestion, file formats, bronze, data modeling, silver, gold, ETL/ELT, warehouse, Delta, DQ, testing |
+| **Beyond entry** | 11–19 | Spark internals, streaming, storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
 
 ### Analytics (20 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry** | 00–05 | GROUP BY, window functions, CTEs/joins, query optimization, business SQL, profiling |
-| **Mid** | 06–12 | Univariate/bivariate EDA, outlier detection, hypothesis inventory, KPIs, cohorts, business analogies |
-| **Senior** | 13–19 | Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration |
+| **Entry (core)** | 00–10 | GROUP BY, window functions, CTEs, query optimization, business SQL, profiling, univariate/bivariate EDA, outlier detection, hypothesis inventory, KPIs |
+| **Beyond entry** | 11–19 | Cohort analysis, business analogies, Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration |
 
 ### Science (24 notebooks) — intern → senior
 
 | Level | Notebooks | Focus |
 | --- | --- | --- |
-| **Entry** | 00–03 | Feature engineering, binary/multiclass classification |
-| **Mid** | 04–12 | Interpretability, regression, clustering, dimensionality reduction |
-| **Senior** | 13–23 | NLP pipeline, TF-IDF, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, feature selection rigor, experiment tracking, model cards |
+| **Entry (core)** | 00–10 | Feature engineering, classification, interpretability, regression, feature selection, clustering, cluster profiling |
+| **Beyond entry** | 11–23 | Dimensionality reduction, NLP, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, experiment tracking, model cards |
 
 ## Pokemon-to-Business Domain Mapping
 

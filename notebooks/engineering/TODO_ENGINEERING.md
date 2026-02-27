@@ -10,6 +10,38 @@
 
 ---
 
+## Core — Intern / Co-op / New Grad
+
+| # | Notebook | Skills |
+|---|----------|--------|
+| 00 | ingestion | Batch ingestion, idempotency, caching, retry, rate limiting |
+| 01 | file_formats | Parquet vs JSON vs CSV, columnar vs row, compression |
+| 02 | bronze | Raw landing zone, schema-on-read/write, append-only, CDF |
+| 03 | data_modeling | Star schema, fact vs dimension, SCD, wide vs normalized |
+| 04 | silver | Cleaning, conforming, junction tables, null handling |
+| 05 | gold | Aggregations, partitioning, serving layer |
+| 06 | etl_vs_elt | ETL vs ELT, push-down computation |
+| 07 | warehouse_concepts | OLAP vs OLTP, lakehouse, dimensional modeling |
+| 08 | delta_patterns | MERGE, time travel, CDF, OPTIMIZE, ZORDER |
+| 09 | data_quality | DQ rules, quarantine, pipeline contracts |
+| 10 | pipeline_testing | Unit tests, integration tests, pytest |
+
+## Beyond entry-level (mid / senior)
+
+| # | Notebook | Focus |
+|---|----------|-------|
+| 11 | distributed_systems | Shuffles, partitioning, skew, Spark internals |
+| 12 | streaming | Structured Streaming, watermarks, stateful ops |
+| 13 | storage_optimization | Z-ordering, bloom filters, liquid clustering |
+| 14 | query_optimization | Explain plans, AQE, broadcast/skew joins |
+| 15 | data_modeling_advanced | Data vault, OBT, medallion patterns |
+| 16 | cdc_patterns | CDC beyond CDF, SCD Type 2, log-based |
+| 17 | orchestration | DAG, DLT, incremental CDF, Workflows |
+| 18 | observability | Monitoring, alerting, lineage |
+| 19 | security_governance | PII, masking, Unity Catalog |
+
+---
+
 ## 00_ingestion.ipynb — Batch Ingestion & Caching
 
 **Skills:** Batch ingestion, idempotency, caching, retry, rate limiting, manifests, ETL vs ELT intro
@@ -262,32 +294,7 @@
 
 ---
 
-## 09_distributed_systems.ipynb — Spark Internals & Distributed Systems
-
-**Skills:** Shuffles, partitioning, skew, broadcasting, memory management, Spark internals
-
-- [ ] Explain shuffle: when it happens, why it's expensive
-- [ ] Partitioning: coalesce, repartition, partitionBy
-- [ ] Skew: detect, salting, skew joins
-- [ ] Broadcasting: when to broadcast small tables
-- [ ] Memory management: executor/driver, OOM prevention
-- [ ] Spark execution model: DAG, stages, tasks
-
----
-
-## 10_streaming.ipynb — Structured Streaming
-
-**Skills:** Structured Streaming, micro-batch vs continuous, watermarks, late data, stateful ops
-
-- [ ] Micro-batch vs continuous processing
-- [ ] Watermarks and late data handling
-- [ ] Stateful operations: aggregations, deduplication
-- [ ] Simulate streaming: read Bronze as stream, append to Silver
-- [ ] Checkpointing and exactly-once semantics
-
----
-
-## 11_data_quality.ipynb — DQ Framework & Validation
+## 09_data_quality.ipynb — DQ Framework & Validation
 
 **Skills:** DQ dimensions, rule engines, quarantine, Great Expectations, pipeline contracts
 
@@ -300,7 +307,7 @@
 
 ---
 
-## 12_pipeline_testing.ipynb — Pipeline Testing
+## 10_pipeline_testing.ipynb — Pipeline Testing
 
 **Skills:** Unit testing transforms, integration testing, test data generation, pytest
 
@@ -309,6 +316,31 @@
 - [ ] Test data generation: minimal valid datasets
 - [ ] pytest fixtures for SparkSession, sample DataFrames
 - [ ] CI: run tests before merge
+
+---
+
+## 11_distributed_systems.ipynb — Spark Internals & Distributed Systems
+
+**Skills:** Shuffles, partitioning, skew, broadcasting, memory management, Spark internals
+
+- [ ] Explain shuffle: when it happens, why it's expensive
+- [ ] Partitioning: coalesce, repartition, partitionBy
+- [ ] Skew: detect, salting, skew joins
+- [ ] Broadcasting: when to broadcast small tables
+- [ ] Memory management: executor/driver, OOM prevention
+- [ ] Spark execution model: DAG, stages, tasks
+
+---
+
+## 12_streaming.ipynb — Structured Streaming
+
+**Skills:** Structured Streaming, micro-batch vs continuous, watermarks, late data, stateful ops
+
+- [ ] Micro-batch vs continuous processing
+- [ ] Watermarks and late data handling
+- [ ] Stateful operations: aggregations, deduplication
+- [ ] Simulate streaming: read Bronze as stream, append to Silver
+- [ ] Checkpointing and exactly-once semantics
 
 ---
 
