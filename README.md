@@ -165,7 +165,7 @@ Analytics      Data Science
 2. Create a cluster: Runtime 13.x LTS, single node
 3. Install cluster libraries: `aiohttp`, `tqdm`, `optuna`, `shap`, `imbalanced-learn`,
    `lightgbm`, `sentence-transformers`, `pyLDAvis`, `missingno`, `boruta`, `mord`
-4. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/you/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
+4. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
 5. **Or manual upload:** Create `FileStore/pokedata/` in DBFS and upload `src/` there
 6. Run `00_ingestion` first (creates cache in DBFS), then `01_file_formats`, etc.
 
