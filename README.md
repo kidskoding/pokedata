@@ -2,6 +2,12 @@
 
 data science, engineering, and analytics with pokemon in Python!
 
+> A production-grade data platform built on Pokémon data,
+> running entirely on **Databricks**. Every notebook is a deep standalone
+> showcase of one discipline. The engineering pipeline is the foundation every analytics
+> and science notebook reads from Delta tables, never raw files. This mirrors exactly how
+> **Databricks** heavy companies like **JP Morgan Chase**, **Walmart**, **John Deere**, and > **Dow** operate
+
 Practice the full spectrum of data engineering, analytics, and data science skills
 using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL
 analytics, predictive modeling, NLP, and model interpretability. These skills carry
@@ -125,4 +131,7 @@ See [STRUCTURE.md](STRUCTURE.md) for the full directory layout and Pokemon-to-bu
 
 ## Task Checklist
 
-See [TODO.md](TODO.md) for the per-notebook task checklist.
+Per-notebook task checklists live in:
+- [notebooks/engineering/TODO_ENGINEERING.md](notebooks/engineering/TODO_ENGINEERING.md)
+- [notebooks/analytics/TODO_ANALYTICS.md](notebooks/analytics/TODO_ANALYTICS.md)
+- [notebooks/science/TODO_SCIENCE.md](notebooks/science/TODO_SCIENCE.md)

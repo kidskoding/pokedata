@@ -1,93 +1,160 @@
-# Project Structure — Data Science, Engineering & Analytics with Pokemon
+# Project Structure — Data Engineering · Analytics · Science with Pokemon
 
 ## Directory Layout
 
 ```
 pokedata/
-├── pyproject.toml                         # Dependencies (managed by uv)
-├── uv.lock                                # Lockfile (auto-generated)
+├── pyproject.toml
+├── uv.lock
 ├── .python-version                        # Python 3.13
 ├── README.md
 ├── STRUCTURE.md                           # This file
-├── TODO.md                                # Task checklist by notebook
 ├── LICENSE
 │
-├── notebooks/                             # Analysis notebooks
-│   ├── 00_data_pipeline.ipynb             # Data fetching, cleaning, feature engineering, SQLite
-│   ├── 01_eda_and_profiling.ipynb         # Exploratory data analysis + SQL queries
-│   ├── 02_classification.ipynb            # Binary + multiclass classification
-│   ├── 03_regression.ipynb                # Regression & forecasting
-│   ├── 04_clustering.ipynb                # Unsupervised segmentation
-│   ├── 05_time_series.ipynb               # Generation-based trend analysis
-│   ├── 06_nlp_text_analysis.ipynb         # Pokedex flavor text NLP
-│   ├── 07_hypothesis_testing.ipynb        # Statistical inference (t-tests, ANOVA, chi-squared)
-│   ├── 08_model_comparison.ipynb          # Systematic model evaluation
-│   ├── 09_external_data.ipynb             # External data integration (Smogon, etc.)
-│   ├── 10_storytelling_dashboard.ipynb    # Final presentation + business recs
-│   └── archived/                          # Old notebook stubs
+├── src/                                   # Shared modules
+│   ├── ingestion.py
+│   ├── constants.py
+│   ├── schemas.py                         # (to add)
+│   ├── quality.py                         # (to add)
+│   └── features.py                        # (to add)
 │
-├── samples/                               # Working reference notebooks
+├── notebooks/
+│   ├── engineering/                       # 20 notebooks — pipeline & platform
+│   │   ├── 00_ingestion.ipynb
+│   │   ├── 01_file_formats.ipynb
+│   │   ├── 02_bronze.ipynb
+│   │   ├── 03_data_modeling.ipynb
+│   │   ├── 04_silver.ipynb
+│   │   ├── 05_gold.ipynb
+│   │   ├── 06_etl_vs_elt.ipynb
+│   │   ├── 07_warehouse_concepts.ipynb
+│   │   ├── 08_delta_patterns.ipynb
+│   │   ├── 09_distributed_systems.ipynb
+│   │   ├── 10_streaming.ipynb
+│   │   ├── 11_data_quality.ipynb
+│   │   ├── 12_pipeline_testing.ipynb
+│   │   ├── 13_storage_optimization.ipynb
+│   │   ├── 14_query_optimization.ipynb
+│   │   ├── 15_data_modeling_advanced.ipynb
+│   │   ├── 16_cdc_patterns.ipynb
+│   │   ├── 17_orchestration.ipynb
+│   │   ├── 18_observability.ipynb
+│   │   └── 19_security_governance.ipynb
+│   │
+│   ├── analytics/                         # 20 notebooks — SQL, EDA, BI
+│   │   ├── 00_group_by.ipynb
+│   │   ├── 01_window_functions.ipynb
+│   │   ├── 02_advanced_queries.ipynb
+│   │   ├── 03_query_optimization.ipynb
+│   │   ├── 04_business_sql.ipynb
+│   │   ├── 05_profiling.ipynb
+│   │   ├── 06_univariate.ipynb
+│   │   ├── 07_bivariate.ipynb
+│   │   ├── 08_outlier_detection.ipynb
+│   │   ├── 09_hypothesis_inventory.ipynb
+│   │   ├── 10_kpi_framework.ipynb
+│   │   ├── 11_cohort_analysis.ipynb
+│   │   ├── 12_business_analogies.ipynb
+│   │   ├── 13_plotly_dashboard.ipynb
+│   │   ├── 14_executive_report.ipynb
+│   │   ├── 15_power_creep.ipynb
+│   │   ├── 16_type_diversity.ipynb
+│   │   ├── 17_distribution_shifts.ipynb
+│   │   ├── 18_forecasting.ipynb
+│   │   └── 19_external_integration.ipynb
+│   │
+│   └── science/                           # 24 notebooks — ML & NLP
+│       ├── 00_feature_engineering.ipynb
+│       ├── 01_binary_classification.ipynb
+│       ├── 02_multiclass_classification.ipynb
+│       ├── 03_additional_classification.ipynb
+│       ├── 04_interpretability.ipynb
+│       ├── 05_bst_regression.ipynb
+│       ├── 06_stat_regression.ipynb
+│       ├── 07_additional_regression.ipynb
+│       ├── 08_feature_selection.ipynb
+│       ├── 09_stat_clustering.ipynb
+│       ├── 10_cluster_profiling.ipynb
+│       ├── 11_dimensionality_reduction.ipynb
+│       ├── 12_full_feature_clustering.ipynb
+│       ├── 13_text_preprocessing.ipynb
+│       ├── 14_tfidf_analysis.ipynb
+│       ├── 15_sentiment.ipynb
+│       ├── 16_text_classification.ipynb
+│       ├── 17_topic_modeling.ipynb
+│       ├── 18_unified_evaluation.ipynb
+│       ├── 19_hyperparameter_tuning.ipynb
+│       ├── 20_ensembles.ipynb
+│       ├── 21_feature_selection_rigor.ipynb
+│       ├── 22_experiment_tracking.ipynb
+│       └── 23_model_cards.ipynb
+│
+├── samples/
 │   ├── sample_type_visualizer.ipynb
 │   └── save_sprite.ipynb
 │
-├── data/                                  # gitignored — regenerated by notebook 00
-│   ├── raw/                               # Raw API data (pokemon_raw.csv, flavor_text.csv)
-│   ├── processed/                         # Cleaned data (pokemon_clean.csv, pokemon.db)
-│   └── cache/                             # API response cache
+├── data/                                  # gitignored — regenerated by pipeline
+│   ├── raw/
+│   ├── processed/
+│   └── cache/
 │
-├── outputs/                               # gitignored — regenerated by notebooks
-│   ├── figures/                           # Saved charts (PNG/SVG at 300 DPI)
-│   ├── models/                            # Saved model artifacts (joblib/pickle)
-│   └── reports/                           # Generated text summaries
-│
-├── sprites/                               # Pokemon sprite images
-│   └── infernape.png
+├── outputs/                               # gitignored
+│   ├── figures/
+│   ├── models/
+│   └── reports/
 │
 └── docs/
-    └── DATA_DICTIONARY.md                 # Column reference for pokemon_clean.csv
+    └── DATA_DICTIONARY.md
 ```
 
-## Notebook Execution Order
-
-Notebooks are numbered and should be run sequentially. Notebook 00 produces the
-dataset that all others consume.
+## Pipeline Flow
 
 ```
-00_data_pipeline ──► data/processed/pokemon_clean.csv
-                     data/processed/pokemon.db
-                     data/raw/flavor_text.csv
-        │
-        ├──► 01_eda_and_profiling
-        ├──► 02_classification
-        ├──► 03_regression
-        ├──► 04_clustering
-        ├──► 05_time_series
-        ├──► 06_nlp_text_analysis (also reads flavor_text.csv)
-        ├──► 07_hypothesis_testing
-        │
-        ├──► 08_model_comparison (references models from 02 + 03)
-        ├──► 09_external_data (pulls Smogon/external sources, joins with base data)
-        └──► 10_storytelling_dashboard (synthesizes all findings)
+PokeAPI (REST)
+      │
+      ▼  engineering/00_ingestion
+data/cache/ (JSON)
+      │
+      ▼  engineering/02_bronze
+Delta Bronze (18 tables)
+      │
+      ▼  engineering/04_silver
+Delta Silver (20 tables)
+      │
+      ▼  engineering/05_gold
+Delta Gold (10 tables)
+      │
+      ├──────────────────┬──────────────────┐
+      ▼                  ▼                  ▼
+analytics/          science/          BI / Dashboards
+(SQL, EDA, BI)      (ML, NLP)
 ```
 
-## Skill Coverage
+## Skill Coverage by Track
 
-Each notebook builds a specific data science, engineering, or analytics skill.
-These skills carry directly to datathon competitions and real-world work.
+### Engineering (20 notebooks) — intern → senior
 
-| Notebook | Skill Area | Covers |
+| Level | Notebooks | Focus |
 | --- | --- | --- |
-| 00 | Data Engineering | API fetching, ETL, caching, SQLite, feature engineering |
-| 01 | EDA | Pandas profiling, SQL queries, distributions, correlations |
-| 02 | Classification | Binary/multiclass, class imbalance, sklearn, XGBoost |
-| 03 | Regression | Linear/Ridge/Lasso, residual diagnostics, interpretation |
-| 04 | Clustering | K-Means, hierarchical, PCA, t-SNE, segment profiling |
-| 05 | Time Series | Trend decomposition, ACF/PACF, ARIMA, statsmodels |
-| 06 | NLP | Tokenization, sentiment (VADER), TF-IDF, text classification |
-| 07 | Hypothesis Testing | t-tests, ANOVA, chi-squared, effect sizes, corrections |
-| 08 | Model Evaluation | Cross-validation, comparison tables, hyperparameter tuning |
-| 09 | External Data | Joining external sources, feature enrichment, sourcing methodology |
-| 10 | Storytelling | Visualization, narrative, business recommendations, Plotly |
+| **Entry** | 00–05 | Ingestion, file formats, bronze, data modeling, silver, gold |
+| **Mid** | 06–12 | ETL/ELT, warehouse concepts, Delta patterns, Spark internals, streaming, DQ, testing |
+| **Senior** | 13–19 | Storage/query optimization, advanced modeling, CDC, orchestration, observability, security |
+
+### Analytics (20 notebooks) — intern → senior
+
+| Level | Notebooks | Focus |
+| --- | --- | --- |
+| **Entry** | 00–05 | GROUP BY, window functions, CTEs/joins, query optimization, business SQL, profiling |
+| **Mid** | 06–12 | Univariate/bivariate EDA, outlier detection, hypothesis inventory, KPIs, cohorts, business analogies |
+| **Senior** | 13–19 | Plotly dashboards, executive reports, power creep, type diversity, hypothesis testing, forecasting, external integration |
+
+### Science (24 notebooks) — intern → senior
+
+| Level | Notebooks | Focus |
+| --- | --- | --- |
+| **Entry** | 00–03 | Feature engineering, binary/multiclass classification |
+| **Mid** | 04–12 | Interpretability, regression, clustering, dimensionality reduction |
+| **Senior** | 13–23 | NLP pipeline, TF-IDF, sentiment, text classification, topic modeling, unified evaluation, hyperparameter tuning, ensembles, feature selection rigor, experiment tracking, model cards |
 
 ## Pokemon-to-Business Domain Mapping
 
@@ -97,7 +164,7 @@ These skills carry directly to datathon competitions and real-world work.
 | Base stats (HP, Atk, Def, ...) | Behavioral features / spending patterns |
 | Types (Fire, Water, ...) | Customer segments |
 | Legendary / Mythical status | High-value / premium tier customers |
-| Generations (1-9) | Time periods / fiscal quarters |
+| Generations (1–9) | Time periods / fiscal quarters |
 | Pokedex flavor text | Customer reviews / support transcripts |
 | Capture rate | Acquisition difficulty / conversion rate |
 | Evolution chains | Customer lifecycle / account upgrades |
@@ -105,32 +172,28 @@ These skills carry directly to datathon competitions and real-world work.
 
 ## Notebook Template
 
-Every notebook should follow this structure:
+Every notebook should follow:
 
 ```
-1. Title & Skill Focus
-   - What skill this practices
-   - How it applies to real-world data problems
-
-2. Setup
-   - Imports
-   - Load data from data/processed/
-
-3. Analysis / Modeling
-   - Clear section headers with markdown explanations
-   - Code with outputs and visualizations
-
-4. Key Findings
-   - 3-5 bullet points summarizing results
-
-5. Business Recommendations
-   - Translate findings into actionable insights
+1. Title & Skill Focus — what skill, real-world application
+2. Setup — imports, load data from Gold/Silver
+3. Analysis / Modeling — sections, code, visualizations
+4. Key Findings — 3–5 bullet summary
+5. Business Recommendations — actionable insights
 ```
+
+## Task Checklists
+
+Per-notebook task details:
+
+- [notebooks/engineering/TODO_ENGINEERING.md](notebooks/engineering/TODO_ENGINEERING.md)
+- [notebooks/analytics/TODO_ANALYTICS.md](notebooks/analytics/TODO_ANALYTICS.md)
+- [notebooks/science/TODO_SCIENCE.md](notebooks/science/TODO_SCIENCE.md)
 
 ## Quick Start
 
 ```bash
-uv sync                        # Install dependencies
-uv run jupyter notebook        # Launch Jupyter
-# Run 00_data_pipeline.ipynb first, then any other notebook
+uv sync
+uv run jupyter notebook
+# Run engineering/00_ingestion first (or 00_data_pipeline for CSV path)
 ```

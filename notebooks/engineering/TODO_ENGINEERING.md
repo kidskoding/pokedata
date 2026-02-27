@@ -10,9 +10,9 @@
 
 ---
 
-## 00_ingestion.ipynb — Async API Fetching & DBFS Caching
+## 00_ingestion.ipynb — Batch Ingestion & Caching
 
-**Skills:** aiohttp, asyncio, semaphore, exponential backoff, DBFS caching, ingestion manifest
+**Skills:** Batch ingestion, idempotency, caching, retry, rate limiting, manifests, ETL vs ELT intro
 
 - [ ] Import `src/ingestion.py` — `AsyncPokeAPIFetcher` class
 - [ ] Define all 18 endpoint configs: URL pattern + expected record count
@@ -27,10 +27,21 @@
 
 ---
 
-## 01_bronze.ipynb — Raw Ingestion to Bronze Delta Tables
+## 01_file_formats.ipynb — File Formats & Storage
 
-**Skills:** PySpark, Delta Lake, StructType schema enforcement, append-only writes,
-Change Data Feed, audit columns, DBFS JSON reads
+**Skills:** Parquet vs JSON vs CSV vs Avro vs Delta, columnar vs row, compression, when to use each
+
+- [ ] Compare read/write performance: JSON vs CSV vs Parquet vs Delta on Pokemon data
+- [ ] Columnar vs row storage: explain and demonstrate scan patterns
+- [ ] Compression: Snappy, GZIP, Zstd — size vs speed tradeoffs
+- [ ] When to use each format: landing (JSON), staging (Parquet), serving (Delta)
+- [ ] Schema evolution implications per format
+
+---
+
+## 02_bronze.ipynb — Raw Landing Zone
+
+**Skills:** Raw landing zone, schema-on-read vs schema-on-write, append-only, audit trails, CDF
 
 - [ ] Initialize SparkSession (already configured on Databricks cluster)
 - [ ] Import `src/schemas.py` — all Bronze StructType definitions
@@ -46,10 +57,21 @@ Change Data Feed, audit columns, DBFS JSON reads
 
 ---
 
-## 02_silver.ipynb — Bronze → Silver Cleaning & Conforming
+## 03_data_modeling.ipynb — Data Modeling Fundamentals
 
-**Skills:** PySpark transformations, explode, pivot, null handling, unit conversion,
-schema enforcement, junction tables, recursive Python for evolution chains, audit columns
+**Skills:** Star schema, snowflake, SCD Type 1/2/3, fact vs dimension tables, normalization, wide tables
+
+- [ ] Map Pokemon domain to star schema: facts (stats, encounters) vs dimensions (species, types)
+- [ ] Snowflake vs star: when to normalize dimensions
+- [ ] SCD Type 1/2/3: demonstrate with evolution chain changes
+- [ ] Wide vs normalized: tradeoffs for analytics vs storage
+- [ ] Design gold.pokemon_full as wide table; show equivalent star representation
+
+---
+
+## 04_silver.ipynb — Bronze → Silver Cleaning & Conforming
+
+**Skills:** Cleaning, conforming, junction tables, CDC, deduplication, null handling
 
 ### silver.pokemon
 
@@ -135,15 +157,22 @@ schema enforcement, junction tables, recursive Python for evolution chains, audi
 
 ---
 
-## 03_gold.ipynb — Silver → Gold Aggregations & Serving
+## 05_gold.ipynb — Silver → Gold Aggregations & Serving
 
-**Skills:** PySpark joins, window functions for percentiles, complex aggregations,
-partitioning, ZORDER, wide table construction, feature engineering at scale
+**Skills:** Aggregation design, partitioning strategy, serving layer, wide vs normalized
+
+### gold.pokemon_movepool (build first, before gold.pokemon_full)
+
+- [ ] Per-pokemon: `movepool_size_total, movepool_size_by_levelup, movepool_size_by_tm,
+      avg_move_power, max_move_power, coverage_type_count, stab_move_count,
+      has_priority_move, has_recovery_move, has_setup_move, has_status_move,
+      has_multi_hit_move, physical_move_count, special_move_count, status_move_count,
+      avg_pp, total_pp`
 
 ### gold.pokemon_full (master wide table, ~1025 rows, ~80 cols)
 
 - [ ] Join: silver.pokemon + silver.pokemon_species + silver.evolution_chains +
-      silver.egg_groups + silver.growth_rates + gold.pokemon_movepool (built first) +
+      silver.egg_groups + silver.growth_rates + gold.pokemon_movepool +
       silver.pokemon_abilities (pivoted: ability_1, ability_2, hidden_ability)
 - [ ] Computed stat columns:
       `total_stats, offensive_power (atk+sp_atk), defensive_bulk (def+sp_def+hp),
@@ -163,14 +192,6 @@ partitioning, ZORDER, wide table construction, feature engineering at scale
 - [ ] Full 18×18 single-type table + `coverage_score` per attacker
 - [ ] Full dual-type combined defense table (~153 combos) with resistance/weakness counts
 - [ ] `best_offensive_types`: rank attacker types by avg multiplier across all defenders
-
-### gold.pokemon_movepool (built before gold.pokemon_full)
-
-- [ ] Per-pokemon: `movepool_size_total, movepool_size_by_levelup, movepool_size_by_tm,
-      avg_move_power, max_move_power, coverage_type_count, stab_move_count,
-      has_priority_move, has_recovery_move, has_setup_move, has_status_move,
-      has_multi_hit_move, physical_move_count, special_move_count, status_move_count,
-      avg_pp, total_pp`
 
 ### gold.generational_stats (one row per generation)
 
@@ -203,85 +224,170 @@ partitioning, ZORDER, wide table construction, feature engineering at scale
 
 ---
 
-## 04_delta_patterns.ipynb — Delta Lake Engineering Patterns
+## 06_etl_vs_elt.ipynb — ETL vs ELT Architecture
 
-**Skills:** MERGE, time travel, Change Data Feed, OPTIMIZE, ZORDER, VACUUM,
-schema evolution, partitioning benchmarks, small file problem
+**Skills:** ETL vs ELT architecture, push-down computation, when each pattern applies
 
-- [ ] **MERGE (upsert):** Simulate "Gen 10 data arrives":
-      - 5 new pokemon → INSERT
-      - 3 existing pokemon with stat corrections → UPDATE
-      - Rest → no-op
-      - Show full `MERGE INTO ... WHEN MATCHED ... WHEN NOT MATCHED` syntax
-- [ ] **Time Travel:**
-      - `DESCRIBE HISTORY gold.pokemon_full` — show all write versions
-      - Query `VERSION AS OF 0` vs current. Show changed rows.
-      - Query `TIMESTAMP AS OF '...'` — point-in-time read
-- [ ] **Change Data Feed:**
-      - After simulated re-ingestion, read: `spark.read.format("delta")
-        .option("readChangeFeed","true").option("startingVersion",1)
-        .table("bronze.pokemon")`
-      - Show `_change_type`: insert / update_preimage / update_postimage / delete
-      - Use CDF to do incremental Silver processing — only reprocess changed rows
-- [ ] **OPTIMIZE + ZORDER:**
-      - Before: `DESCRIBE DETAIL gold.pokemon_full` — show file count
-      - Run: `OPTIMIZE gold.pokemon_full ZORDER BY (generation, total_stats)`
-      - After: show reduced file count
-      - Run same analytical query before/after; compare file skipping in `EXPLAIN`
-- [ ] **VACUUM:**
-      - `VACUUM gold.pokemon_full RETAIN 168 HOURS`
-      - Explain what gets deleted, why, and how it limits time travel
-- [ ] **Schema Evolution:**
-      - Add `is_paradox_form BOOLEAN` to silver.pokemon using `mergeSchema=true`
-      - Show downstream Gold reads still work without rewriting Gold
-- [ ] **Partitioning benchmark:**
-      - `WHERE generation = 1` on unpartitioned vs partitioned Gold
-      - Show file skipping count in explain plan; measure query time difference
-- [ ] **Small file problem:**
-      - After 10 small incremental appends to a Silver table, show file proliferation
-      - Apply `OPTIMIZE` + `coalesce`; show before/after file counts
+- [ ] Define ETL: transform in pipeline before load
+- [ ] Define ELT: load raw, transform in warehouse/lakehouse
+- [ ] Push-down computation: when to filter/aggregate at source vs in Spark
+- [ ] When each pattern applies: batch vs streaming, latency vs flexibility
+- [ ] Map Pokemon pipeline: ingestion (E) → Bronze (L) → Silver/Gold (T) — hybrid pattern
 
 ---
 
-## 05_data_quality.ipynb — DQ Framework & Validation
+## 07_warehouse_concepts.ipynb — Warehouse & Lakehouse Concepts
 
-**Skills:** Great Expectations (or custom), rule-based DQ, HTML reporting, pytest patterns
+**Skills:** OLAP vs OLTP, normalization levels, why lakehouses exist, dimensional modeling
+
+- [ ] OLAP vs OLTP: read patterns, consistency, use cases
+- [ ] Normalization levels: 1NF–3NF vs denormalized for analytics
+- [ ] Why lakehouses exist: data lakes + ACID + schema
+- [ ] Dimensional modeling: Kimball vs Inmon, applied to Pokemon
+
+---
+
+## 08_delta_patterns.ipynb — Delta Lake Engineering Patterns
+
+**Skills:** MERGE, time travel, CDF, OPTIMIZE, ZORDER, VACUUM, schema evolution, small files
+
+- [ ] **MERGE (upsert):** Simulate "Gen 10 data arrives" — INSERT, UPDATE, no-op
+- [ ] **Time Travel:** `DESCRIBE HISTORY`, `VERSION AS OF`, `TIMESTAMP AS OF`
+- [ ] **Change Data Feed:** read CDF, show `_change_type`, incremental Silver
+- [ ] **OPTIMIZE + ZORDER:** before/after file count, explain plan comparison
+- [ ] **VACUUM:** `RETAIN 168 HOURS`, explain tradeoffs
+- [ ] **Schema Evolution:** `mergeSchema=true`, add `is_paradox_form`
+- [ ] **Partitioning benchmark:** unpartitioned vs partitioned query
+- [ ] **Small file problem:** proliferation, OPTIMIZE + coalesce
+
+---
+
+## 09_distributed_systems.ipynb — Spark Internals & Distributed Systems
+
+**Skills:** Shuffles, partitioning, skew, broadcasting, memory management, Spark internals
+
+- [ ] Explain shuffle: when it happens, why it's expensive
+- [ ] Partitioning: coalesce, repartition, partitionBy
+- [ ] Skew: detect, salting, skew joins
+- [ ] Broadcasting: when to broadcast small tables
+- [ ] Memory management: executor/driver, OOM prevention
+- [ ] Spark execution model: DAG, stages, tasks
+
+---
+
+## 10_streaming.ipynb — Structured Streaming
+
+**Skills:** Structured Streaming, micro-batch vs continuous, watermarks, late data, stateful ops
+
+- [ ] Micro-batch vs continuous processing
+- [ ] Watermarks and late data handling
+- [ ] Stateful operations: aggregations, deduplication
+- [ ] Simulate streaming: read Bronze as stream, append to Silver
+- [ ] Checkpointing and exactly-once semantics
+
+---
+
+## 11_data_quality.ipynb — DQ Framework & Validation
+
+**Skills:** DQ dimensions, rule engines, quarantine, Great Expectations, pipeline contracts
 
 - [ ] Import `src/quality.py` — `DataQualityChecker` class
-- [ ] Demonstrate all rule types with Pokemon data examples:
-      - `NotNullRule`: pokemon_id across all tables
-      - `UniqueRule`: pokemon_id in silver.pokemon
-      - `RangeRule`: all 6 stats range 1–255; capture_rate 3–255
-      - `InSetRule`: type_1 + type_2 in set of 18 valid types; evolution_stage in {1,2,3};
-        gender_rate in {-1,0,1,2,4,6,7,8}; multipliers in {0,0.25,0.5,1,2,4}
-      - `RegexRule`: sprite_url matches `https://raw.githubusercontent.com/...`
-      - `CustomFnRule`: all 18 types present in silver.type_matchups
+- [ ] Demonstrate all rule types: NotNull, Unique, Range, InSet, Regex, CustomFn
 - [ ] Run DQ suite on every Silver table; display pass/fail per rule
-- [ ] Generate HTML quality report; save to `dbfs:/FileStore/pokedata/outputs/dq_report.html`
-- [ ] Intentionally inject 10 bad rows into a Silver table; show DQ catches them
-- [ ] Quarantine pattern: failed rows → `silver._quarantine_{table_name}` with failure reason column
-- [ ] Demonstrate: pipeline halts if any CRITICAL rule fails (vs WARNING rules that log only)
+- [ ] Generate HTML quality report
+- [ ] Quarantine pattern: failed rows → `silver._quarantine_{table_name}`
+- [ ] Pipeline halts if CRITICAL rule fails
 
 ---
 
-## 06_orchestration.ipynb — Pipeline Orchestration Patterns
+## 12_pipeline_testing.ipynb — Pipeline Testing
 
-**Skills:** DAG design, DLT concepts, incremental CDF pipeline, Databricks Workflows concepts
+**Skills:** Unit testing transforms, integration testing, test data generation, pytest
 
-- [ ] **DAG simulation:** `pipeline_dag.py` chains all 6 engineering notebooks as tasks.
-      Each task: check upstream table health (row count, schema) before running.
-      Task failure stops downstream execution. Show dependency graph as ASCII diagram.
-- [ ] **Delta Live Tables (DLT) concepts:**
-      - Define one Bronze table as `@dlt.table` with `@dlt.expect` quality constraints
-      - Define one Silver table reading from Bronze via `dlt.read()`
-      - Show quarantine pattern: failed rows → `_quarantine` table
-      - Explain how DLT handles re-runs differently from imperative notebooks
-- [ ] **Incremental CDF pipeline:**
-      - Read CDF from bronze.pokemon for only changed records since last run
-      - Reprocess only those records through Silver → Gold (skip unchanged)
-      - Compare cost: full re-run (1025 rows) vs incremental (50 changed rows)
-      - Store last processed version in `dbfs:/FileStore/pokedata/pipeline_state.json`
-- [ ] **Databricks Workflows walk-through:**
-      - Describe how these notebooks would be scheduled as a Workflow DAG
-      - Show what the job config JSON would look like
-      - Explain cluster policies, job clusters vs all-purpose clusters, cost tradeoffs
+- [ ] Unit test transform functions: mock inputs, assert outputs
+- [ ] Integration test: run Bronze → Silver on fixture data
+- [ ] Test data generation: minimal valid datasets
+- [ ] pytest fixtures for SparkSession, sample DataFrames
+- [ ] CI: run tests before merge
+
+---
+
+## 13_storage_optimization.ipynb — Storage Optimization
+
+**Skills:** Z-ordering, bloom filters, liquid clustering, compaction, statistics, predicate pushdown
+
+- [ ] Z-ordering: when and how, measure query improvement
+- [ ] Bloom filters: when they help, `delta.autoOptimize.optimizeWrite`
+- [ ] Liquid clustering (Databricks): vs Z-order
+- [ ] Compaction: small file coalescing
+- [ ] Statistics and predicate pushdown: EXPLAIN to verify
+
+---
+
+## 14_query_optimization.ipynb — Query Optimization
+
+**Skills:** Explain plans, AQE, broadcast joins, skew joins, caching, partitioning benchmarks
+
+- [ ] EXPLAIN / EXPLAIN EXTENDED: read plans, identify bottlenecks
+- [ ] Adaptive Query Execution (AQE): what it does
+- [ ] Broadcast joins: `broadcast()` hint, auto-broadcast threshold
+- [ ] Skew joins: `skewJoin`
+- [ ] Caching: when to cache, cache eviction
+- [ ] Partitioning benchmarks: measure before/after
+
+---
+
+## 15_data_modeling_advanced.ipynb — Advanced Data Modeling
+
+**Skills:** Data vault, one big table, lakehouse modeling, medallion design patterns
+
+- [ ] Data vault: hubs, links, satellites
+- [ ] One Big Table (OBT): when to denormalize heavily
+- [ ] Lakehouse modeling: medallion (bronze/silver/gold) patterns
+- [ ] Compare approaches for Pokemon: which fits?
+
+---
+
+## 16_cdc_patterns.ipynb — CDC Patterns
+
+**Skills:** CDC beyond CDF, SCD implementation, upsert patterns, log-based CDC concepts
+
+- [ ] CDC beyond Delta CDF: Debezium, Kafka, log-based
+- [ ] SCD Type 2 implementation in Delta
+- [ ] Upsert patterns: MERGE, deduplication
+- [ ] Log-based CDC concepts: change capture, replay
+
+---
+
+## 17_orchestration.ipynb — Pipeline Orchestration
+
+**Skills:** DAG design, dependency management, idempotent pipelines, failure handling, backfill
+
+- [ ] DAG simulation: chain notebooks as tasks, dependency graph
+- [ ] Delta Live Tables (DLT) concepts: `@dlt.table`, `@dlt.expect`
+- [ ] Incremental CDF pipeline: reprocess only changed rows
+- [ ] Databricks Workflows: job config, cluster policies
+- [ ] Failure handling, backfill strategies
+
+---
+
+## 18_observability.ipynb — Pipeline Observability
+
+**Skills:** Pipeline monitoring, alerting, data freshness, SLAs, lineage, logging patterns
+
+- [ ] Pipeline monitoring: what to track
+- [ ] Alerting: freshness, row counts, DQ failures
+- [ ] Data freshness and SLAs
+- [ ] Lineage: table-to-table, column-level
+- [ ] Logging patterns: structured logs, correlation IDs
+
+---
+
+## 19_security_governance.ipynb — Security & Governance
+
+**Skills:** PII handling, data masking, row/column security, Unity Catalog, data contracts
+
+- [ ] PII handling: identification, masking strategies
+- [ ] Row/column-level security
+- [ ] Unity Catalog: metastore, access control
+- [ ] Data contracts: schema enforcement, versioning
