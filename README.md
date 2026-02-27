@@ -166,10 +166,10 @@ Analytics      Data Science
 3. Install cluster libraries: `aiohttp`, `tqdm`, `optuna`, `shap`, `imbalanced-learn`,
    `lightgbm`, `sentence-transformers`, `pyLDAvis`, `missingno`, `boruta`, `mord`
 4. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
-5. **Or manual upload:** Create `FileStore/pokedata/` in DBFS and upload `src/` there
-6. Run `00_ingestion` first (creates cache in DBFS), then `01_file_formats`, etc.
+5. **Create Unity Catalog** (Data → Catalogs → Create catalog): name `pokedata`. Then create a Volume (Data → Volumes → Create Volume): catalog `pokedata`, schema `default`, volume name `pokedata`. Data is stored at `/Volumes/pokedata/default/pokedata/`.
+6. Run `00_ingestion` first (creates cache), then `01_file_formats`, etc.
 
-With Repos, code stays in sync with GitHub. Data (cache, Delta tables) is written to `dbfs:/FileStore/pokedata/` regardless
+With Unity Catalog, data (cache, Delta tables) is written to the `pokedata` volume. The catalog is ready for future Bronze/Silver/Gold schemas (`pokedata.bronze`, `pokedata.silver`, `pokedata.gold`).
 
 **Local (optional):** `uv sync && uv run jupyter notebook` — `00_ingestion` runs locally; notebooks 01+ require Databricks
 

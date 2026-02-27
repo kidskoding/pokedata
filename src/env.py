@@ -26,7 +26,8 @@ def using_databricks() -> bool:
 
 if using_databricks():
     import os
-    base = os.environ.get("POKEDATA_DBFS_PATH", "/dbfs/tmp/pokedata")
+    # Catalog pokedata, schema default, volume pokedata. Override via POKEDATA_DBFS_PATH.
+    base = os.environ.get("POKEDATA_DBFS_PATH", "/Volumes/pokedata/default/pokedata")
     candidate = find_project_root()
     project_root = candidate if (candidate / "src").exists() else Path(base)
     CACHE_ROOT = Path(f"{base}/cache")
