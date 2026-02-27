@@ -20,7 +20,7 @@ I aim to make these roles **interesting** by using **Pokemon data** to give a co
 
 Practice the full spectrum of skills using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL analytics to predictive modeling, NLP, and model interpretability. Built for **intern / co-op / new grad** portfolios, with stretch content for mid and senior roles.
 
-**Runs on Databricks**: This workbook is designed for [Databricks](https://www.databricks.com/) — the lakehouse platform used by many enterprise data teams. **Please run these notebooks via Databricks.** With the free [Community Edition](https://community.cloud.databricks.com), Apache Spark (the enterprise method / tool for processing large-scale data) comes pre-configured, startup is instant, and the Bronze/Silver/Gold pipeline matches real-world production setups. Connect your GitHub repo via Repos and run everything in the cloud! (The steps will be shown in the **[Quick Start](#quick-start)** section of this README)
+**Runs on Databricks**: This workbook is designed for [Databricks](https://www.databricks.com/) — the lakehouse platform used by many enterprise data teams. **Please run these notebooks via Databricks.** Without Databricks, this workbook will not work!! With the free [Community Edition](https://community.cloud.databricks.com), Apache Spark (the enterprise method / tool for processing large-scale data) comes pre-configured, startup is instant, and the Bronze/Silver/Gold medallion / pipeline matches real-world production setups. Connect your GitHub repo via Repos and run everything in the cloud! (The steps will be shown in the **[Quick Start](#quick-start)** section of this README)
 
 ## Notebook Structure
 
