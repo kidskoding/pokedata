@@ -27,7 +27,7 @@
 | 08 | bivariate | Correlation, scatter, violin, heatmaps |
 | 09 | outlier_detection | IQR, Z-score, Mahalanobis |
 | 10 | hypothesis_inventory | H0/H1, test selection, pre-registration |
-| 11 | kpi_framework | KPI design, percentiles, Shannon entropy |
+| 11 | kpi_framework | KPI design, percentiles, Shannon entropy | 
 
 ---
 
