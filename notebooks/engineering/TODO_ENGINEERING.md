@@ -1,13 +1,7 @@
 # TODO — Data Engineering (notebooks/engineering/)
 
-> **Run `notebooks/setup.ipynb` once per cluster** (shared by engineering, analytics, science)
-> All notebooks run on **Databricks**
-> Each notebook starts with:
-> ```python
-> import sys
-> sys.path.insert(0, '/dbfs/FileStore/pokedata/src')
-> ```
-> Delta tables live at `dbfs:/FileStore/pokedata/delta/{bronze,silver,gold}/`
+> Default runtime is **local PySpark** via `get_spark()` in `src.env`.
+> Data lives under `data/` by default (cache, delta, benchmarks).
 
 ---
 

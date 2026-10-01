@@ -20,11 +20,9 @@ I aim to make these roles **interesting** by using **Pokemon data** to give a co
 
 Practice the full spectrum of skills using Pokemon data — from async API ingestion and Delta Lake pipelines through SQL analytics to predictive modeling, NLP, and model interpretability. Built for **intern / co-op / new grad** portfolios, with stretch content for mid and senior roles.
 
-**Runs on Databricks:** All notebooks (engineering, analytics, science) run on [Databricks](https://www.databricks.com/) — mirrors how enterprise teams operate: one platform, shared data, no export/import. Connect your repo via Repos and run everything in the cloud.
+**Runs locally with PySpark:** All notebooks (engineering, analytics, science) run on a local PySpark session by default. The architecture mirrors a Databricks-style lakehouse (Bronze/Silver/Gold), so you can later port this project to Databricks if you have a workspace.
 
 ## Notebook Structure
-
-**Run first:** `notebooks/setup.ipynb` — run once per cluster; installs deps from `pyproject.toml` for all tracks (engineering, analytics, science).
 
 ### Engineering (`notebooks/engineering/`) — 20 notebooks
 
@@ -132,7 +130,7 @@ Practice the full spectrum of skills using Pokemon data — from async API inges
 PokeAPI REST (18 endpoints, ~50,000+ records)
             │
             ▼  async aiohttp + semaphore + exponential backoff
-DBFS cache  ← raw JSON, never re-fetched
+Local cache (data/cache)  ← raw JSON, never re-fetched
             │
             ▼  PySpark + StructType schemas
 ┌──────────────────────────────────────────┐
@@ -161,16 +159,17 @@ Analytics      Data Science
 
 ## Quick Start
 
-**Databricks:** All notebooks run on Databricks. Engineering builds the pipeline; analytics and science read from Gold/Silver Delta tables on the same platform.
+**Local PySpark (recommended):** Everything runs on your machine using a local PySpark session. Engineering builds the pipeline; analytics and science read from the same Bronze/Silver/Gold data.
 
-1. Sign up at [community.cloud.databricks.com](https://community.cloud.databricks.com) (free)
-2. Create a cluster: Runtime 13.x LTS, single node
-3. **Connect GitHub repo:** Workspace → Repos → Add Repo → paste your repo URL (e.g. `https://github.com/[your user]/pokedata`). Databricks clones the repo; notebooks and `src/` are available immediately.
-4. **Create Unity Catalog** (Data → Catalogs → Create catalog): name `pokedata`. Then create a Volume (Data → Volumes → Create Volume): catalog `pokedata`, schema `default`, volume name `pokedata`. Data is stored at `/Volumes/pokedata/default/pokedata/`.
-5. **Run `notebooks/setup.ipynb` once per cluster** — installs dependencies from `pyproject.toml`; packages are then available to all notebooks (engineering, analytics, science).
-6. Run engineering notebooks first (`01_ingestion` → `02_file_formats` → …), then analytics and science read from Gold/Silver.
+1. Install [uv](https://github.com/astral-sh/uv) and Python 3.10+ if you haven't already.
+2. In this repo, run `uv sync` to create `.venv/` with all dependencies (including PySpark).
+3. Start Jupyter: `uv run jupyter notebook`.
+4. In Jupyter, open `notebooks/setup.ipynb` and run all cells once (per environment) — this installs `pokedata` as a package.
+5. Run engineering notebooks in order (`engineering/01_ingestion` → `engineering/02_file_formats` → …).
+6. Later, run analytics and science notebooks once Bronze/Silver/Gold data exists.
 
-With Unity Catalog, data (cache, Delta tables) is written to the `pokedata` volume. The catalog is ready for Bronze/Silver/Gold schemas (`pokedata.bronze`, `pokedata.silver`, `pokedata.gold`).
+**Optional Databricks port:** If you have a Databricks workspace, you can clone this repo into Repos, point paths at Unity Catalog volumes in `src/env.py`, and reuse the same notebooks on a cluster.
+
 
 ## Project Structure
 

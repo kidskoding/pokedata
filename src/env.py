@@ -1,7 +1,13 @@
 """
 Shared environment setup for pokedata notebooks.
 
-Import this first in any notebook. Auto-detects local vs Databricks.
+Import this first in any notebook.
+
+Defaults:
+- **Local:** uses a local PySpark session (`master=local[*]`) and the `data/` folder.
+- **Databricks (optional):** if `DATABRICKS_RUNTIME_VERSION` is set, uses Unity Catalog
+  style paths under `/Volumes/pokedata/default/pokedata`.
+
 Usage:
     from src.env import project_root, CACHE_ROOT, cache_path, BENCH_PATH, get_spark
     spark = get_spark()
@@ -11,21 +17,27 @@ Usage:
 import sys
 from pathlib import Path
 
+
 def find_project_root() -> Path:
-    """Walk up from cwd until we find src/ (project root)"""
-    
+    """Walk up from cwd until we find src/ (project root)."""
+
     cwd = Path.cwd()
     for candidate in [cwd, cwd.parent, cwd.parent.parent]:
         if (candidate / "src").exists():
             return candidate
     return cwd
 
+
 def using_databricks() -> bool:
+    """Return True when running on a Databricks cluster."""
     import os
+
     return "DATABRICKS_RUNTIME_VERSION" in os.environ
+
 
 if using_databricks():
     import os
+
     # Catalog pokedata, schema default, volume pokedata. Override via POKEDATA_DBFS_PATH.
     base = os.environ.get("POKEDATA_DBFS_PATH", "/Volumes/pokedata/default/pokedata")
     candidate = find_project_root()
@@ -37,30 +49,39 @@ if using_databricks():
 else:
     project_root = find_project_root()
     data = project_root / "data"
-
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
-
-if not using_databricks():
     CACHE_ROOT = data / "cache"
     CACHE_PATH = str(CACHE_ROOT)
     BENCH_PATH = str(data / "format_benchmark")
     DELTA_ROOT = str(data / "delta")
 
+
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+
 def cache_path(endpoint: str) -> str:
-    """Path to cached JSON for an endpoint (e.g. 'pokemon', 'move')"""
+    """Path to cached JSON for an endpoint (e.g. 'pokemon', 'move')."""
     return f"{CACHE_PATH}/{endpoint}"
 
+
 def get_spark():
-    """Get SparkSession. Databricks only — Spark is pre-configured on the cluster."""
-    if not using_databricks():
-        raise RuntimeError(
-            "Spark notebooks require Databricks. Connect your repo at community.cloud.databricks.com "
-            "and run notebooks there. See README Quick Start."
-        )
-        
+    """
+    Get a SparkSession.
+
+    - **Local:** creates (or reuses) a `local[*]` PySpark session.
+    - **Databricks:** returns the active cluster SparkSession.
+    """
     from pyspark.sql import SparkSession
-    session = SparkSession.getActiveSession()
-    if session is not None:
-        return session
-    raise RuntimeError("No active Spark session. Attach a cluster to this notebook.")
+
+    if using_databricks():
+        session = SparkSession.getActiveSession()
+        if session is not None:
+            return session
+        raise RuntimeError("No active Spark session. Attach a cluster to this notebook.")
+
+    # Local PySpark
+    return (
+        SparkSession.builder.appName("pokedata-local")
+        .master("local[*]")
+        .getOrCreate()
+    )

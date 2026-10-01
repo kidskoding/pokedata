@@ -22,4 +22,5 @@ dependencies = [
     "requests>=2.32",
     "tqdm>=4.66",
     "aiohttp>=3.13.3",
+    "pyspark>=4.1.1",
 ]

@@ -19,7 +19,6 @@ pokedata/
 │   └── features.py                        # (to add)
 │
 ├── notebooks/
-│   ├── setup.ipynb                        # Run once per cluster — all tracks
 │   ├── engineering/                      # 20 notebooks — 01-11 entry, 12-20 beyond
 │   │   ├── 01_ingestion.ipynb
 │   │   ├── 02_file_formats.ipynb
@@ -193,5 +192,5 @@ Per-notebook task details:
 ```bash
 uv sync
 uv run jupyter notebook
-# Run notebooks/setup once per cluster, then engineering/01_ingestion first
+# Run notebooks/setup once per environment, then engineering/01_ingestion first
 ```

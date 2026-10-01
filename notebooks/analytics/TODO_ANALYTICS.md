@@ -1,15 +1,7 @@
 # TODO — Data Analytics (notebooks/analytics/)
 
-> **Run `notebooks/setup.ipynb` once per cluster** (shared by engineering, analytics, science)
-> All notebooks run on **Databricks**
-> All data reads from Gold or Silver Delta tables — never raw files
-> Start each notebook with:
-> ```python
-> import sys
-> sys.path.insert(0, '/dbfs/FileStore/pokedata/src')
-> from constants import TYPE_COLORS, GOLD_PATH
-> gold = spark.read.format("delta").load(GOLD_PATH + "pokemon_full")
-> ```
+> All notebooks assume a **SparkSession from `get_spark()`** in `src.env`.
+> Analytics reads from Silver/Gold data stored under `data/` (or any Spark catalog you configure).
 
 ---
 
